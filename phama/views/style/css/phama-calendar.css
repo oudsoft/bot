@@ -1,0 +1,47 @@
+/* win-calendar.css*/
+
+	@keyframes zoomScale{
+		from{transform:scale(1);}
+		to{transform:scale(1.6);}
+	}
+
+	/*user-prompt css */
+
+	.date-slide-show{
+		display: block;
+		padding: 4px;
+		/* width: 880px; */
+		width: 100%;
+		/* height: 115px; */
+		position: absolute;
+		z-index: 1;
+		top: 250px;
+		left: 1px; 
+		border: 2px solid black;
+		/* background-color: rgba(255, 0, 0, 0.15); */
+		background-color: rgba(105,105,105, 0.15);
+	}
+
+
+	.weekday, .schnor-item{cursor: pointer;	margin-left: 5px;padding: 5px;display:inline-block;	}
+	.snoemp-item{cursor: pointer;	margin-left: 5px;padding: 5px;display: none;	background-color: rgba(255,255,224,0.15);}
+	.weekday:hover, .schnor-item:hover, .snoemp-item:hover { animation: zoomScale 1.85s;}
+	.sun {background-color: red;}
+	.mon {background-color: yellow;}
+	.tue{	background-color: pink; }
+	.wed{background-color: green;}
+	.thu{	background-color: orange;}
+	.fri {background-color: #33ffff;}
+	.sat{background-color: #cc00ff;}
+	.borderBlack{border: 3px solid black}
+	.previous-bttn, .next-bttn {
+		cursor: pointer;
+		text-decoration: none;
+		display: inline-block;
+		padding: 12px 24px;		
+		background-color: #f1f1f1;
+		color: black;		
+		font-size: 22px;
+	}
+	.round{	border-radius: 50%;}
+	.previous-bttn:hover,  .next-bttn:hover { animation: zoomScale 1.85s;}

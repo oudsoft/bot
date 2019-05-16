@@ -1,0 +1,61 @@
+@font-face {
+        font-family: THSarabunNew;
+        font-weight: normal;
+        font-style: normal;
+		src: url('/win/font/THSarabunNew.ttf');
+}
+
+html {
+	font-size: 100%;
+}
+body,
+input,
+select,
+textarea,
+button,
+a {
+	font-size: 1.3em;
+	line-height: 1.5;
+	font-family: THSarabunNew /*{global-font-family}*/;
+}
+
+input[type="radio"] {
+    -ms-transform: scale(2.0); /* IE 9 */
+    -webkit-transform: scale(2.0); /* Chrome, Safari, Opera */
+    transform: scale(2.0);
+}
+
+.fieldset {
+	padding: 5px;
+	border: 3px solid #3a3a3a;
+}
+/*header */
+#header {
+	position: relative; 
+	width: 99.5%;
+	background-color: #e74c3c;
+	border: 3px solid #3a3a3a;
+	text-align: center;
+}
+/* data content */
+#data-display {
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+. table {
+  display: table;
+  width: 100%;
+}
+.tr {
+  display: table-row;
+  border: 2px solid #e74c3c;
+  background-color: rgba(255, 0, 0, 0.4);;
+}
+.td {
+  display: table-cell;
+  background-color: #ccc;
+  padding: 5px;
+}

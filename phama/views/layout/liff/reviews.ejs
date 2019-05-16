@@ -1,0 +1,259 @@
+<!--reviews.ejs-->
+<%- include ../header.ejs %>   
+<style>
+	@font-face {
+			font-family: THSarabunNew;
+			font-weight: normal;
+			font-style: normal;
+			src: url("/<%=appname%>/font/THSarabunNew.ttf");
+	}
+	button {width: 100%;}
+	input[type='button'] {/*line-height: 0.8*/ height: 40px;}
+	.align-center {text-align: center;}
+	#data-message {display: none;}
+	.Content {display: none; ; background-color: #dafce9;}
+	.Header{background-color: #4af091; cursor: pointer;}
+	.ReviewItem {border: 3px solid #336600;}
+</style>
+<div id="data-message" class="align-center">
+
+</div>
+<h2 class="align-center">รายการรีวิว</h2>
+<div id="data-display">
+	<div id="ListReviewDiv">
+		<h3 class="align-center Header" onclick="toggleContent('FoodReview')">เมนูอาหาร</h3>
+		<div id="FoodReview" class="Content">
+			<div class="GListBox">
+				<label for="group">กลุ่มเมนู</label>
+				<select id="group" onchange="doGroupChange()"></select>
+			</div>		
+			<div class="IListBox">
+				<label for="item">เมนู</label>
+				<select id="item" onchange="doItemChange()"></select>
+			</div>
+			<div id="FoodReviewList">
+			</div>
+		</div>
+		<h3 class="align-center Header" onclick="toggleContent('ShopReview')">ร้าน</h3>
+		<div id="ShopReview" class="Content">
+			<div id="ShopReviewList">
+			</div>		
+		</div>
+	</div>
+</div>
+<!-- including footer content which is common for all pages -->
+<%- include ../footer.ejs %>
+
+<script>
+	function getGroupMenuList(){
+		var dfr = $.Deferred();
+		var routeUrl = "/" + appname+ "/fooditem/allgroup";
+		$.post(routeUrl, params, function(data){
+			dfr.resolve(data);
+		}).fail(function(error) { 
+			console.log(JSON.stringify(error));
+			dfr.reject(error); 
+		});
+		return dfr.promise();
+	}
+
+	function getItemMenuList(groupid){
+		var dfr = $.Deferred();
+		var routeUrl = "/" + appname+ "/fooditem/itemlist/" + groupid;
+		$.post(routeUrl, params, function(data){
+			dfr.resolve(data);
+		}).fail(function(error) { 
+			console.log(JSON.stringify(error));
+			dfr.reject(error); 
+		});
+		return dfr.promise();
+	}
+
+	function getMenuReviewList(itemid){
+		var dfr = $.Deferred();
+		var routeUrl = "/" + appname+ "/reviews/foodreviewlist/" + itemid;
+		$.get(routeUrl, params, function(data){
+			dfr.resolve(data);
+		}).fail(function(error) { 
+			console.log(JSON.stringify(error));
+			dfr.reject(error); 
+		});
+		return dfr.promise();
+	}
+
+	function doUpdateReviewStatus(itemid, value){
+		var dfr = $.Deferred();
+		var routeUrl = "/" + appname+ "/reviews/foodreviewstatus/" + itemid;
+		params = {status: value};
+		$.post(routeUrl, params, function(data){
+			dfr.resolve(data);
+		}).fail(function(error) { 
+			console.log(JSON.stringify(error));
+			dfr.reject(error); 
+		});
+		return dfr.promise();
+	}
+
+	function getShopReviewList(){
+		var dfr = $.Deferred();
+		var routeUrl = "/" + appname+ "/reviews/shopreviewlist";
+		$.post(routeUrl, params, function(data){
+			dfr.resolve(data);
+		}).fail(function(error) { 
+			console.log(JSON.stringify(error));
+			dfr.reject(error); 
+		});
+		return dfr.promise();
+	}
+
+	function doUpdateShopReviewStatus(revid, value){
+		var dfr = $.Deferred();
+		var routeUrl = "/" + appname+ "/reviews/shopreviewstatus/" + revid;
+		params = {status: value};
+		$.post(routeUrl, params, function(data){
+			dfr.resolve(data);
+		}).fail(function(error) { 
+			console.log(JSON.stringify(error));
+			dfr.reject(error); 
+		});
+		return dfr.promise();
+	}
+
+	function deleteFoodReview(foodid){
+		var dfr = $.Deferred();
+		var routeUrl = "/" + appname+ "/reviews/foodreviewdelete/" + foodid;
+		params = {};
+		$.post(routeUrl, params, function(data){
+			dfr.resolve(data);
+		}).fail(function(error) { 
+			console.log(JSON.stringify(error));
+			dfr.reject(error); 
+		});
+		return dfr.promise();
+	}
+
+	function deleteShopReview(revid){
+		var dfr = $.Deferred();
+		var routeUrl = "/" + appname+ "/reviews/shopreviewdelete/" + revid;
+		params = {};
+		$.post(routeUrl, params, function(data){
+			dfr.resolve(data);
+		}).fail(function(error) { 
+			console.log(JSON.stringify(error));
+			dfr.reject(error); 
+		});
+		return dfr.promise();
+	}
+</script>
+
+<script>
+	$(document).ready(function() {
+		doLoadGroupComboOption();
+	});
+
+	function toggleContent(divid){
+		$('#'+ divid).toggle();
+		if(divid == "ShopReview") {
+			if ($("#ShopReview").is(":hidden")) {
+				//alert("OK");
+			} else {
+				doLoadShopReview();
+			}
+		}
+	}
+
+	function doLoadGroupComboOption(){
+		$.when(getGroupMenuList()).done(function(groupData) {
+			var optionText = "";
+			groupData.forEach(function(item, ind){
+				optionText = optionText.concat("<option value='" + item.id + "'>" + item.name + "</option>");
+			});
+			$("#group").html(optionText);
+			doGroupChange();
+		});
+	}
+
+	function doGroupChange(){
+		var groupid = $("select#group").val();
+		$.when(getItemMenuList(groupid)).done(function(itemData) {
+			var optionText = "";
+			itemData.forEach(function(item, ind){
+				optionText = optionText.concat("<option value='" + item.id + "'>" + item.name + "</option>");
+			});
+			$("#item").html(optionText);
+			doItemChange();
+		});
+	}
+
+	function doItemChange(){
+		$("#FoodReviewList").empty();
+		var itemid = $("#item").val();
+		$.when(getMenuReviewList(itemid)).done(function(reviewData) {
+			//$("#FoodReviewList").append(JSON.stringify(reviewData));
+			reviewData.forEach((item, inx)=>{
+				var reviewDiv = $("<div class='ReviewItem'></div>")
+				$("#FoodReviewList").append($(reviewDiv));
+				$(reviewDiv).append("<b>" + (inx+1) + ".</b>&nbsp;&nbsp;");
+				$(reviewDiv).append("<b>" + item.review + "</b>&nbsp;&nbsp;");
+				$(reviewDiv).append("เมื่อวันที่ " + formatCustomerDate(item.lastupd) + "&nbsp;&nbsp;เวลา&nbsp;&nbsp;" + formatCustomerTime(item.lastupd) + "&nbsp;&nbsp;");
+				$(reviewDiv).append("โดย " + item.ldisplayname + "&nbsp;&nbsp;");
+				$(reviewDiv).append("<input type='radio' name='status-"  + item.id + "' id='radio-status-on-" + item.id + "' value='on' " + (item.status=="on" ? "checked":"")  + " onchange='statusChange(" + item.id + ",\"on\")'/>&nbsp;&nbsp;");
+				$(reviewDiv).append("<label for='radio-status-on-'"  + item.id + "'>แสดง</label>&nbsp;&nbsp;");
+				$(reviewDiv).append("<input type='radio' name='status-" + item.id + "' id='radio-status-off-" + item.id + "' value='off' " + (item.status=="off" ? "checked":"")  + " onchange='statusChange(" + item.id + ",\"off\")'/>&nbsp;&nbsp;");
+				$(reviewDiv).append("<label for='radio-status-off-'"  + item.id + "'>ซ่อน</label>&nbsp;&nbsp;");
+				$(reviewDiv).append("<input type='button' value=' ลบ ' onclick='doDeleteFoodReview(" + item.id + ")'/>");
+			});
+		});
+	}
+						
+	function statusChange(revid, value){
+		$.when(doUpdateReviewStatus(revid, value)).done(function(code) {
+			alert("เปลี่ยนสถานะการแสดงรีวิวแล้ว");
+		});
+	}
+
+	function doDeleteFoodReview(foodid){
+		if(confirm("โปรดยืนยันการลบรายการโดยตอบ ตกลง")==true){
+			$.when(deleteFoodReview(foodid)).done(function(code) {
+				alert("ลบรีวิวแล้ว");
+				doLoadShopReview();
+			});
+		}
+	}
+
+	function doLoadShopReview(){
+		$("#ShopReviewList").empty();
+		$.when(getShopReviewList()).done(function(reviewData) {
+			//$("#ShopReviewList").append(JSON.stringify(reviewData));
+			reviewData.forEach((item, inx)=>{
+				var reviewDiv = $("<div class='ReviewItem'></div>")
+				$("#ShopReviewList").append($(reviewDiv));
+				$(reviewDiv).append("<b>" + (inx+1) + ".</b>&nbsp;&nbsp;");
+				$(reviewDiv).append("<b>" + item.review + "</b>&nbsp;&nbsp;");
+				$(reviewDiv).append("เมื่อวันที่ " + formatCustomerDate(item.lastupd) + "&nbsp;&nbsp;เวลา&nbsp;&nbsp;" + formatCustomerTime(item.lastupd) + "&nbsp;&nbsp;");
+				$(reviewDiv).append("โดย " + item.ldisplayname + "&nbsp;&nbsp;");
+				$(reviewDiv).append("<input type='radio' name='status-"  + item.id + "' id='radio-status-on-" + item.id + "' value='on' " + (item.status=="on" ? "checked":"")  + " onchange='shopReviewStatusChange(" + item.id + ",\"on\")'/>&nbsp;&nbsp;");
+				$(reviewDiv).append("<label for='radio-status-on-'"  + item.id + "'>แสดง</label>&nbsp;&nbsp;");
+				$(reviewDiv).append("<input type='radio' name='status-" + item.id + "' id='radio-status-off-" + item.id + "' value='off' " + (item.status=="off" ? "checked":"")  + " onchange='shopReviewStatusChange(" + item.id + ",\"off\")'/>&nbsp;&nbsp;");
+				$(reviewDiv).append("<label for='radio-status-off-'"  + item.id + "'>ซ่อน</label>&nbsp;&nbsp;");
+				$(reviewDiv).append("<input type='button' value=' ลบ ' onclick='doDeleteShopReview(" + item.id + ")'/>");
+			});
+		});
+	}
+
+	function shopReviewStatusChange(revid, value){
+		$.when(doUpdateShopReviewStatus(revid, value)).done(function(code) {
+			alert("เปลี่ยนสถานะการแสดงรีวิวแล้ว");
+		});
+	}
+
+	function doDeleteShopReview(revid) {
+		if(confirm("โปรดยืนยันการลบรายการโดยตอบ ตกลง")==true){
+			$.when(deleteShopReview(revid)).done(function(code) {
+				alert("ลบรีวิวแล้ว");
+				doLoadShopReview();
+			});
+		}
+	}
+
+</script>

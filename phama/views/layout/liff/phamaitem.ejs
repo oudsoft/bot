@@ -1,0 +1,351 @@
+<!--phamagitem.ejs-->
+<%- include ../header.ejs %>   
+<style>
+	@font-face {
+			font-family: THSarabunNew;
+			font-weight: normal;
+			font-style: normal;
+			src: url("/<%=appname%>/font/THSarabunNew.ttf");
+	}
+	button {width: 100%;}
+	input[type="file"] {font-size: 1.3em; line-height: 1.5;	font-family: THSarabunNew;}
+	.align-center {text-align: center;}
+	#data-message {display: none;}
+	#ListGroupDiv {padding: 5px;}
+	#ListItemDiv {padding: 5px;}
+	.ItemHeader {background-color: #4af091; cursor: pointer;}
+	.ItemContent   {display: none; background-color: #dafce9;}
+	.IstatusBox {padding: 3px;}
+	.InameBox {padding: 3px;}
+	.IdescriptionBox {padding: 3px;}
+	.IunitBox {padding: 3px;}
+	.IpriceBox {padding: 3px;}
+	.IupdateBox {padding: 3px;}
+	.IPictureFormBox {padding: 3px;}
+	.ImageFrame { border: 3px solid #0ac04f; width: 200px; height: 200px;}
+	.ItemImage {  width: 200px; height: 200px;  object-fit: contain;}
+	.UploadIndicator {height: 80px;}
+	.progressBar {width: 0px; height: 10px; background-color: #0ac04f;}
+	.DeleteCommandDiv  {padding: 3px;}
+	#AddFormDiv {display: none; padding: 5px;}
+	.IsaveBox  {padding: 3px;}
+</style>
+<div id="data-message" class="align-center">
+
+</div>
+<h2 class="align-center">รายการเมนู</h2>
+<div id="data-display">
+	<div id="ListGroupDiv">
+		<div class="GListBox">
+			<label for="group">กลุ่มเมนู</label>
+			<select id="group" onchange="doGroupChange()"></select>
+		</div>
+	</div>
+	<div id="ListItemDiv">
+
+	</div>
+	<div class="align-center"><button id="AddCommandBtt" onclick="toggleAddForm()">เพิ่มรายการ</button></div>
+	<div id="AddFormDiv">
+		<div class='IstatusBox'>
+			<label for='status'>การแสดงหน้าร้าน</label>
+			<select id='status'>
+				<option value='on'>เปิดแสดงหน้าร้าน</option>
+				<option value='off'>ซ่อน</option>
+			</select>
+		</div>
+		<div class="InameBox">
+			<label for="name">ชื่อเมนู</label>
+			<input type="text" id="name" />
+		</div>
+		<div class="IdescriptionBox">
+			<label for="description">รายละเอียด</label>
+			<input type="text" id="description" />
+		</div>
+		<div class="IunitBox">
+			<label for="unit">หน่วยขาย</label>
+			<input type="text" id="unit" />
+		</div>
+		<div class="IpriceBox">
+			<label for="price">ราคาขายปลีก</label>
+			<input type="number" id="price" />&nbsp;&nbsp;บาท
+		</div>
+		<div class="IexpriceBox">
+			<label for="exprice">ราคาสมาชิก</label>
+			<input type="number" id="exprice" />&nbsp;&nbsp;บาท
+		</div>
+		<div class="IsaveBox">
+			<button onclick="saveData()">บันทึก</button>
+		</div>		
+	</div>
+</div>
+
+<!-- including footer content which is common for all pages -->
+<%- include ../footer.ejs %>
+
+<script>
+	function getGroupList(){
+		var dfr = $.Deferred();
+		var routeUrl = "/" + appname+ "/phamaitem/allgroup";
+		$.post(routeUrl, params, function(data){
+			dfr.resolve(data);
+		}).fail(function(error) { 
+			console.log(JSON.stringify(error));
+			dfr.reject(error); 
+		});
+		return dfr.promise();
+	}
+
+	function getItemList(groupid){
+		var dfr = $.Deferred();
+		var routeUrl = "/" + appname+ "/phamaitem/itemlist/" + groupid;
+		$.post(routeUrl, params, function(data){
+			dfr.resolve(data);
+		}).fail(function(error) { 
+			console.log(JSON.stringify(error));
+			dfr.reject(error); 
+		});
+		return dfr.promise();
+	}
+</script>
+
+<script src="/<%=appname%>/script/js/simpleUpload.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		doLoadGroupComboOption();
+	});
+
+	function toggleAddForm(){
+		$("#AddFormDiv").toggle();
+	}
+
+	function doLoadGroupComboOption(){
+		$.when(getGroupList()).done(function(groupData) {
+			var optionText = "";
+			groupData.forEach(function(item, ind){
+				optionText = optionText.concat("<option value='" + item.id + "'>" + item.name + "</option>");
+			});
+			$("#group").html(optionText);
+			doGroupChange();
+		});
+	}
+
+	function doGroupChange(){
+		var groupid = $("select#group").val();
+		$.when(getItemList(groupid)).done(function(itemData) {
+			$("#ListItemDiv").empty();
+			if(itemData.length > 0) {
+				itemData.forEach(function(item, inx){
+					//$("#ListItemDiv").html(JSON.stringify(itemData));
+					$("#ListItemDiv").append("<h3 class='align-center ItemHeader' onclick='toggleContent(" + item.id + ")'>" + (inx+1) +". " + item.name + '</h3>');
+					var contentText = "<div id='contentid-" + item.id + "' class='ItemContent'>";
+					contentText = contentText.concat("<div class='IstatusBox'>");
+					contentText = contentText.concat("<label for='status-" + item.id + "'>การแสดงหน้าร้าน</label>");
+					contentText = contentText.concat("<select id='status-" + item.id + "'><option value='on'" + (item.status=='no'?'selected':'') + ">เปิดแสดงหน้าร้าน</option><option value='off'" + (item.status=='off'?'selected':'') + ">ซ่อน</option></select>");
+					contentText = contentText.concat("</div>");
+
+					contentText = contentText.concat("<div class='InameBox'>");
+					contentText = contentText.concat("<label for='name-" + item.id + "'>ชื่อเมนู</label>");
+					contentText = contentText.concat("<input type='text' id='name-" + item.id + "' value='" + item.name + "'/>");
+					contentText = contentText.concat("</div>");
+
+					contentText = contentText.concat("<div class='IdescriptionBox'>");
+					contentText = contentText.concat("<label for='description-" + item.id + "'>รายละเอียด</label>");
+					contentText = contentText.concat("<input type='text' id='description-" + item.id + "' value='" + item.description + "'/>");
+					contentText = contentText.concat("</div>");
+
+					contentText = contentText.concat("<div class='IunitBox'>");
+					contentText = contentText.concat("<label for='unit-" + item.id + "'>หน่วยขาย</label>");
+					contentText = contentText.concat("<input type='text' id='unit-" + item.id + "' value='" + item.unit + "' size='10'/>");
+					contentText = contentText.concat("</div>");
+
+					contentText = contentText.concat("<div class='IpriceBox'>");
+					contentText = contentText.concat("<label for='price-" + item.id + "'>ราคาขายปลีก</label>");
+					contentText = contentText.concat("<input type='number' id='price-" + item.id + "' value='" + item.price + "'  size='10'/>&nbsp;บาท");
+					contentText = contentText.concat("</div>");
+
+					contentText = contentText.concat("<div class='IexpriceBox'>");
+					contentText = contentText.concat("<label for='exprice-" + item.id + "'>ราคาสมาชิก</label>");
+					contentText = contentText.concat("<input type='number' id='exprice-" + item.id + "' value='" + item.exprice + "'  size='10'/>&nbsp;บาท");
+					contentText = contentText.concat("</div>");
+
+					contentText = contentText.concat("<div class='IupdateBox'>");
+					contentText = contentText.concat("<button onclick='updateData(" + item.id + ")'>บันทึก</button>");
+					contentText = contentText.concat("</div>");
+
+					contentText = contentText.concat("<div class='IPictureFormBox'>");
+					contentText = contentText.concat("<label for='image-" + item.id + "'>รูปเมนู</label>");
+					contentText = contentText.concat("<div class='align-center'>");
+					contentText = contentText.concat("<div class='ImageFrame'>");
+					if(item.picture != ''){
+						contentText = contentText.concat("<img id='image-" + item.id +"' class='ItemImage' src='/" + appname + "/img/upload/" +  cookie[0].shopid + "/item/" + item.picture + "'/>");
+					} else {
+						contentText = contentText.concat("<img id='image-" + item.id +"' class='ItemImage'/>");
+					}
+					contentText = contentText.concat("</div>");
+					contentText = contentText.concat("</div>");
+					contentText = contentText.concat("<div class='UploadIndicator'>");
+					contentText = contentText.concat("<div id='filename-" + item.id + "'></div>");
+					contentText = contentText.concat("<div id='progress-" + item.id + "'></div>");
+					contentText = contentText.concat("<div id='progressBar-" + item.id + "' class='progressBar'></div>");
+					contentText = contentText.concat("</div>");
+					contentText = contentText.concat("<input type='file' id='file-" + item.id +"' name='photos' onChange='return uploadImage(" + item.id + ");'>");
+					contentText = contentText.concat("</div>");
+
+					contentText = contentText.concat("<div class='DeleteCommandDiv align-center'>");
+					contentText = contentText.concat("<input type='button' value=' ลบ ' onclick='deleteItem(" + item.id + ")'/>");
+					contentText = contentText.concat("</div>");
+
+					contentText = contentText.concat("</div>");
+					$("#ListItemDiv").append(contentText);
+				});
+			} else {
+					$("#ListItemDiv").append("<h3>" + "ยังไม่มีรายการ"  + '</h3>');
+			}
+		});
+	}
+
+	function toggleContent(itemid){
+		$("#contentid-"+itemid).toggle();
+	}
+
+	function  uploadImage(itemid){
+		var uploadUrl = "/" + appname+ "/phamaitem/upload/" + itemid;
+		$('#file-'+ itemid).simpleUpload(uploadUrl, {
+			start: function(file){
+				//upload started
+				$('#filename-'+ itemid).html(file.name);
+				$('#progress-'+ itemid).html("");
+				$('#progressBar-'+ itemid).width(0);
+			},
+			progress: function(progress){
+				//received progress
+				$('#progress-'+ itemid).html("ดำเนินการได้ : " + Math.round(progress) + "%");
+				$('#progressBar-'+ itemid).width(progress + "%");
+			},
+			success: function(data){
+				console.log(JSON.stringify(data));
+				$('#progress-'+ itemid).html("สำเร็จ!");
+				$('#image-'+ itemid).attr('src', '/' + appname+ '/img/upload/' + cookie[0].shopid + '/item/' + data.filename);
+			},
+			error: function(error){
+				//upload failed
+				$('#progress-'+ itemid).html("Failure!<br>" + error.name + ": " + error.message);
+			}
+		});
+	}
+
+	function updateData(itemid) {
+		var newName = $('#name-'+ itemid).val();
+		if(newName != '') {
+			var newDescription = $('#description-'+ itemid).val();
+			if(newDescription != '') {
+				var newUnit = $('#unit-'+ itemid).val();
+				if(newUnit != '') {
+					var newPrice = $('#price-'+ itemid).val();
+					if((newPrice != '')  && (!isNaN(newPrice))){
+						var newexPrice = $('#exprice-'+ itemid).val();
+						var newStatus = $('#status-'+ itemid).val();
+						var saveurl = "/" + appname + "/phamaitem/edit/" + itemid;
+						var savedata = {name: newName, description: newDescription, unit: newUnit, price: newPrice, exprice: newexPrice, status: newStatus};
+						$.post(saveurl, savedata, function(data){
+							if (data.status.code == 200){
+								showMessage("บันทึกข้อมูลสำเร็จ", "#data-message", function() {
+									doGroupChange();
+								});
+							} else {
+								showMessage("การบันทึกข้อมูลมีปัญหา กรุณาแจ้งผู้ดูแลของคุณ", "#data-message", function() {
+									alert("การบันทึกขัดข้อง");
+								});
+							}
+						}).fail(function(error) { 
+							showMessage("การบันทึกข้อมูลขัดข้อง เนื่องจาก<br/>" + JSON.stringify(error) + "<br/>กรุณาแจ้งผู้ดูแลของคุณ", "#data-message", function() {
+								alert("การบันทึกขัดข้อง");
+							});
+						});
+					} else {
+						$('#price-'+ itemid).css('border', '3px solid red');
+						$('#price-'+ itemid).focus();
+					}
+				} else {
+					$('#unit-'+ itemid).css('border', '3px solid red');
+					$('#unit-'+ itemid).focus();
+				}
+			} else {
+				$('#description-'+ itemid).css('border', '3px solid red');
+				$('#description-'+ itemid).focus();
+			}
+		} else {
+			$('#name-'+ itemid).css('border', '3px solid red');
+			$('#name-'+ itemid).focus();
+		}
+	}
+
+	function deleteItem(itemid) {
+		if (confirm('โปรดยืนยันการลบโดยคลิก ตกลง')==true){
+			var posturl = "/" + appname + "/phamaitem/delete/" + itemid;
+			$.post(posturl, params, function(data){
+				alert("ลบข้อมูลสำเร็จ!");
+				doGroupChange();
+			}).fail(function(error) { 
+				console.log(JSON.stringify(error));
+				alert("การลบข้อมูลขัดข้อง");
+			});
+		}
+	}
+
+	function saveData() {
+		var newName = $('#name').val();
+		if(newName != '') {
+			var newDescription = $('#description').val();
+			if(newDescription != '') {
+				var newUnit = $('#unit').val();
+				if(newUnit != '') {
+					var newPrice = $('#price').val();
+					if((newPrice != '')  && (!isNaN(newPrice))){
+						var newexPrice = $('#exprice').val();
+						var newStatus = $('#status').val();
+						var groupid = $("select#group").val();
+						var saveurl = "/" + appname + "/phamaitem/add";
+						var savedata = {name: newName, description: newDescription, unit: newUnit, price: newPrice, exprice: newexPrice, status: newStatus, groupid: groupid};
+						//console.log(JSON.stringify(savedata));
+						$.post(saveurl, savedata, function(data){
+							//console.log(JSON.stringify(data));
+							if (data.status.code == 200){
+								showMessage("บันทึกข้อมูลสำเร็จ", "#data-message", function() {
+									doGroupChange();
+									$('#name').val('');
+									$('#description').val('');
+									$('#unit').val('');
+									$('#price').val('');
+									$('#exprice').val('');
+								});
+							} else {
+								showMessage("การบันทึกข้อมูลมีปัญหา กรุณาแจ้งผู้ดูแลของคุณ", "#data-message", function() {
+									alert("การบันทึกขัดข้อง");
+								});
+							}
+						}).fail(function(error) { 
+							showMessage("การบันทึกข้อมูลขัดข้อง เนื่องจาก<br/>" + JSON.stringify(error) + "<br/>กรุณาแจ้งผู้ดูแลของคุณ", "#data-message", function() {
+								alert("การบันทึกขัดข้อง");
+							});
+						});
+					} else {
+						$('#price').css('border', '3px solid red');
+						$('#price').focus();
+					}
+				} else {
+					$('#unit').css('border', '3px solid red');
+					$('#unit').focus();
+				}
+			} else {
+				$('#description').css('border', '3px solid red');
+				$('#description').focus();
+			}
+		} else {
+			$('#name').css('border', '3px solid red');
+			$('#name').focus();
+		}
+	}
+</script>
+

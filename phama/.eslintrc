@@ -1,0 +1,17 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 2017
+    },
+
+    "env": {
+        "es6": true,
+        "amd": true,
+        "browser": true,
+        "node": true,
+    },
+    
+    "rules": {
+        "no-console": "off",
+        "no-unused-vars": "off"
+    }
+}

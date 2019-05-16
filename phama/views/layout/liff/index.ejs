@@ -1,0 +1,103 @@
+<!-- index.ejs -->
+<%- include ../header.ejs %>   
+
+<h2 id= "welcome-user" style="text-align: center">ยินดีต้อนรับผู้ดูแลระบบ</h2>
+<div id="data-message" style="display: none; text-align: center"></div>
+<div id="data-display">
+
+</div>
+
+<!-- including footer content which is common for all pages -->
+<%- include ../footer.ejs %>
+
+<script>
+
+	function getUserRole(psid){
+		return new Promise(function(resolve, reject) {
+			var userRoleUrl = "/" + appname + "/userrole/" + psid;
+			$.get(userRoleUrl, params, function(data){
+				resolve(data);
+			}).fail(function(error) { 
+				console.log(JSON.stringify(error));
+				reject(error); 
+			});
+		});
+	}
+
+	function doLoadUserRole(psid){
+		return new Promise(function(resolve, reject) {
+			getUserRole(psid).then(function(userData) {
+				resolve(userData);
+			}).catch(function(error) { 
+				console.log(JSON.stringify(error));
+				reject(error); 
+			});
+		});
+	}
+
+	function showWaitting(msg, target, degree, millisecond){
+		$(target).html("<h3>" + msg+ "</h3>");
+		$(target).css({"background-color": "yellow", "color": "blue", "font-size": "20px",  "text-align": "center", "height": "50px", "line-height": "50px", "position": "relative", "z-index":"5", "opacity": "0.25"});
+		$(target).show();
+		$(target).animateRotate(degree, millisecond);
+		setTimeout(function() {
+			$(target).removeAttr( "style" ).hide().fadeIn();
+			$(target).hide();
+		}, (millisecond+500) );
+	}
+
+	function setupSystem(data) {
+		var cookieStr = $.cookie(cookiename).substr(2);
+		var cookie = $.parseJSON(cookieStr);
+		console.log(JSON.stringify(cookie));
+		//$("#data-display").html(JSON.stringify(cookie));
+		$("#data-display").append("<p><b>ชื่อร้าน</b> " + cookie[0].name + "</p>");
+		$("#data-display").append("<p><b>ชื่อผู้จัดการร้าน</b> " + cookie[0].fname + " " + cookie[0].lname + "</p>");
+		$("#data-display").append("<p><b>โทรศัพท์</b> " + cookie[0].tel + "</p>");
+		$("#data-display").append("<p><b>ที่อยู่</b> " + cookie[0].address + "</p>");
+		$("#data-display").append("<p><b>สโลแกน</b> " + cookie[0].slogan + "</p>");
+		$("#data-display").append("<p><b>userId</b> " + cookie[0].lpsid + "</p>");
+		$("#data-display").append("<p><b>laccId</b> " + cookie[0].laccid + "</p>");
+		$(document).attr("title", cookie[0].name);
+		$("#welcome-user").text("ยินดีต้อนรับ คุณ " + cookie[0].fname + " " + cookie[0].lname);
+		//$("#data-display").append("<p><b>userData</b> " + JSON.stringify(data) + "</p>");
+	}
+
+	const admins = ["U2ffb97f320994da8fb3593cd506f9c43", "U232d9a7827b62fdf2da73da28cf2136d", "Ua585df3d0089a9a13fa74776610d1388"];
+	if (navigator.userAgent.toLowerCase().indexOf('line') > -1)	{
+		/* ไว้ใช้กับ liff */
+		liff.init( data => {
+			var userId = data.context.userId;
+			var ids = admins.indexOf(userId);
+			if(ids >= 0 ) {
+				doLoadUserRole(userId).then(function(userData) {
+					showWaitting("ระบบกำลังเริ่ม โปรดรอสักครู่ ... ", "#data-message", 360, 3000);
+					setTimeout(function(){
+						if(userProfile.length > 0){
+							setupSystem(userData);
+						} else {
+							alert("ระบบไม่พบสิทธิ์อนุญาตเข้าใช้งานของคุณ");
+						}
+					}, 3500);
+				});
+			}
+			//});
+		});
+	} else {
+		/*  ไว้ใช้กับ desktop browser */
+		var userId = 'U2ffb97f320994da8fb3593cd506f9c43';
+		doLoadUserRole(userId).then(function(userData) {
+			console.log("userData-> " + JSON.stringify(userData));
+			showWaitting("ระบบกำลังเริ่ม โปรดรอสักครู่ ... ", "#data-message", 360, 3000);
+			setTimeout(function(){
+				if(userData.length > 0){
+					setupSystem(userData);
+					//$.event.trigger({type: "newMessage", userProfile: userProfile});
+				} else {
+					alert("ระบบไม่พบสิทธิ์อนุญาตเข้าใช้งานของคุณ");
+				}
+			}, 3500);
+		});
+	}
+</script>
+

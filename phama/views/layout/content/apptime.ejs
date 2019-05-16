@@ -1,0 +1,160 @@
+<!--apptime.ejs-->
+<!DOCTYPE html>
+<html lang="en" >
+<html>
+    <head>
+        <title></title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" type="image/x-icon" href="/<%=appname%>/img/icon/foodOS.ico">
+		<script type="text/javascript" src='/<%=appname%>/script/jquery/jquery-ui-1.12.1.custom/external/jquery/jquery.js'></script>
+		<script type="text/javascript" src='/<%=appname%>/script/jquery/jquery-ui-1.12.1.custom/jquery-ui.js'></script>
+		<script type="text/javascript" src="/<%=appname%>/script/js/jquery-te-1.4.0.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="/<%=appname%>/script/js/mdtimepicker.js"></script>
+		<script type="text/javascript" src="/<%=appname%>/script/js/food-plugin.js"></script>
+		<script type="text/javascript" src="/<%=appname%>/script/js/food.js"></script>
+		<script type="text/javascript" src='/<%=appname%>/script/js/food-util.js'></script>
+
+		<link rel="stylesheet" href="/<%=appname%>/style/mdtimepicker.css">
+	<style>
+		@font-face {
+			font-family: THSarabunNew;
+			font-weight: normal;
+			font-style: normal;
+			src: url("/<%=appname%>/font/THSarabunNew.ttf");
+		}
+		html {
+			font-size: 100%;
+		}
+		body, input, select, textarea,	button,	a {
+			font-size: 1.3em;
+			line-height: 1.5;
+			font-family: THSarabunNew /*{global-font-family}*/;
+		}
+		button {width: 100%;}
+		#header {padding: 4px; border: 3px solid #ff6666; line-height: 0.45; position: relative; height: 70px}
+		.align-center {text-align: center;}
+		#AppTimeSelect {padding: 4px; height: 100px;}
+		#Log {}
+	</style>
+    </head>
+    <body>
+		<div data-role="page" data-theme="a">
+			<div id="header">
+				<h2 class="align-center">เลือกเวลา</h2>
+			</div>
+			<div id="data-message" style="display: none; text-align: center"></div>
+			<p>คลิกลงในช่องเวลา เพื่อเปิดนาฬิกาขึ้นมาเลือกเวลา เมื่อได้เวลาที่ต้องการแล้ว คลิกปุ่ม <b>ตกลง</b> ครับ</p>
+			<div id="AppTimeSelect">
+				<div class="IAppTimeBox">
+					<label for="apptime">เวลา</label>
+					<input type="text" name="apptime" id="apptime"/>
+				</div>
+			</div>
+			<button id="CloseCmd" onclick="doCloseWindow()">ตกลง</button>
+			<button id="RefreshCmd" onclick="doRefreshWindow()">รีเฟรช</button>
+			<div id="Log"></div>
+		</div>
+   </body>
+</html>   
+
+<script>
+	var appname = '<%=appname%>';
+	var params = {};
+	var shopid = '<%=shopid%>';
+	var apptime;
+	var psid;
+
+	function doCallbackWebhook() {
+		return new Promise(function(resolve, reject) {
+			var url = "/" + appname+ "/webhook/confirmapptime";
+			params = {psid:  psid, apptime: apptime};
+			$.post(url, params, function(data){
+				resolve(data);
+			}).fail(function(error) { 
+				console.log(JSON.stringify(error));
+				reject(error); 
+			});
+		});
+	}
+
+	$( function() {
+		$("#apptime").mdtimepicker({
+			timeFormat: 'hh:mm:ss.000', 
+			format: 'hh:mm',      
+			theme: 'blue',        
+			readOnly: true,       
+			hourPadding: false     			
+		});
+	});
+
+	initPage();
+
+	function initPage() {
+		showWaitting("ระบบกำลังเริ่ม โปรดรอสักครู่ ... ", "#data-message", 360, 3000);
+	}
+
+	function showWaitting(msg, target, degree, millisecond){
+		$(target).html("<h3>" + msg+ "</h3>");
+		$(target).css({"background-color": "yellow", "color": "blue", "font-size": "20px",  "text-align": "center", "height": "50px", "line-height": "50px", "position": "relative", "z-index":"5", "opacity": "0.25"});
+		$(target).show();
+		$(target).animateRotate(degree, millisecond);
+		setTimeout(function() {
+			$(target).removeAttr( "style" ).hide().fadeIn();
+			$(target).hide();
+		}, (millisecond+500) );
+	}
+
+	function doCloseWindow(){
+		apptime = $("#apptime").val();
+			if(apptime != ""){
+			var atime = apptime.split(':');  
+			var ad = new Date(); 
+			ad.setHours  (+atime[0]);
+			ad.setMinutes(atime[1]);
+			var dd = new Date(); 
+			var timeDiff = ad.getTime() - dd.getTime();
+			if(timeDiff >  (1000 * 3600 * 0.5)) {
+				doCallbackWebhook().then((code) => {
+					MessengerExtensions.requestCloseBrowser(function success() {
+
+					}, function error(err) {
+
+					});
+				});
+			} else {
+				alert("การสั่งล่วงหน้า ควรมีเวลาห่างไปจากขณะนี้อย่างน้อย 30 นาที ครับ\nโปรดเลือกเวลาจากนาฬิการใหม่อีกครั้ง");
+			}
+		} else {
+			alert("คุณยังไม่เลือกเวลา\nโปรดเลือกเวลาด้วยครับ");
+		}
+	}
+
+	function doRefreshWindow(){
+		var url = $(location).attr('href');
+		$(location).attr('href', url);
+	}
+</script>
+
+<script>
+    window.extAsyncInit = function() {
+        // the Messenger Extensions JS SDK is done loading 
+        MessengerExtensions.getUserID(function success(uids) {
+            psid = uids.psid;
+			$("#Log").append("<p>" + psid + "</p>");
+			$("#Log").append("<p><b>appname</b>&nbsp;&nbsp;" + appname+ "</p>");
+        }, function error(err) {
+
+        });
+    };
+</script>
+
+<script>
+	(function(d, s, id){
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) {return;}
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'Messenger'));
+</script>   

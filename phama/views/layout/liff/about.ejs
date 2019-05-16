@@ -1,0 +1,155 @@
+<!--about.ejs-->
+<%- include ../header.ejs %>   
+<style>
+	#data-display {	  padding-top: 10px;	  padding-right: 10px;	  padding-bottom: 10px;	  padding-left: 10px;		}
+	input[type="button"] {width: 100%;}
+	.text-seacrh-input{}
+	input[type="checkbox"] {
+		-ms-transform: scale(2.0); /* IE 9 */
+		-webkit-transform: scale(2.0); /* Chrome, Safari, Opera */
+		transform: scale(2.0);
+	}
+</style>
+<h2 id= "welcome-user" style="text-align: center">เกี่ยวกับระบบ Phama Bot</h2>
+<div id="data-message" style="display: none; text-align: center"></div>
+<div id="data-display">
+	<div id="AddFormDiv">
+		<div class="IldisplayBox">
+			<label for="ldisplayKey">ชื่อผู้ใช้ใน LINE</label>
+			<input type="search" require="true" id="ldisplayKey" placeholder="ลองพิมพ์ชื่อผู้ใช้ใน LINE ดู" class="text-seacrh-input" tabindex="1" onkeyup="userTypingSearchLdisplayname()"/>
+			<div style="text-align: center;"><img id="UserPic" width="80" height="80"/></div>
+			<input type="hidden" id="lpsid"/>
+		</div>
+		<div class="IMessageBox">
+			<label for="message">ข้อความ</label>
+			<textarea id='message' rows='4' cols='33'></textarea>
+		</div>
+		<div class="IMessageBox">
+			<input type="checkbox" id="isSendBotMenu" checked> ส่งเมนเมนูไปให้ลูกค้าด้วย
+		</div>
+		<div class="ISendCommandBox">
+			<input type="button" name="sendtoCmd" value=" ส่ง " onclick="doSendTo()"/>
+		</div>
+	</div>
+	<div id="loggor"></div>
+</div>
+
+<!-- including footer content which is common for all pages -->
+<%- include ../footer.ejs %>
+
+<script>
+	function getLdisplaynameList(){
+		return new Promise(function(resolve, reject) {
+			var routeUrl = "/" + appname+ "/about/ldisplaynamelist";
+			$.post(routeUrl, params, function(data){
+				resolve(data);
+			}).fail(function(error) { 
+				console.log(JSON.stringify(error));
+				reject(error); 
+			});
+		});
+	}
+
+	function getUserProfile(userId){
+		return new Promise(function(resolve, reject) {
+			var routeUrl = "/" + appname+ "/webhook/userprofile/" + userId;
+			params = {destination: cookie[0].laccid};
+			$.post(routeUrl, params, function(data){
+				resolve(data);
+			}).fail(function(error) { 
+				console.log(JSON.stringify(error));
+				reject(error); 
+			});
+		});
+	}
+</script>
+<script>
+	var users;
+
+	function showWaitting(msg, target, degree, millisecond){
+		$(target).html("<h3>" + msg+ "</h3>");
+		$(target).css({"background-color": "yellow", "color": "blue", "font-size": "20px",  "text-align": "center", "height": "50px", "line-height": "50px", "position": "relative", "z-index":"5", "opacity": "0.25"});
+		$(target).show();
+		$(target).animateRotate(degree, millisecond);
+		setTimeout(function() {
+			$(target).removeAttr( "style" ).hide().fadeIn();
+			$(target).hide();
+		}, (millisecond+500) );
+	}
+
+	function setupSystem() {
+		getLdisplaynameList().then(function(uRows) {
+			//console.log(JSON.stringify(uRows));
+			users = uRows;
+		});
+	}
+
+	showWaitting("ระบบกำลังเริ่ม โปรดรอสักครู่ ... ", "#data-message", 360, 3000);
+	if (navigator.userAgent.toLowerCase().indexOf('line') > -1)	{
+		/* ไว้ใช้กับ liff */
+		liff.init( data => {
+			var userId = data.context.userId;
+			$("#loggor").text(userId);
+			setTimeout(function(userId){
+				setupSystem();
+			}, 3500);
+		});
+	} else {
+		setTimeout(function(){
+			setupSystem();
+		}, 3500);
+	}
+
+	function userTypingSearchLdisplayname() {
+	if ($("#ldisplayKey").val() != ''){ 
+			$("#ldisplayKey").autoComplete({
+				minChars: 1,
+				source: function(term, suggest){
+					term = term.toLowerCase();
+					var choices = users;
+					var suggestions = [];
+					for (i=0;i<choices.length;i++)
+						if (~(choices[i].id+' '+choices[i].ldisplayname).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+					suggest(suggestions);
+				},
+				renderItem: function (item, search){
+					search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+					var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+					var choiceItem = '<div class="autocomplete-suggestion" data-lpsid="'+item.lpsid+'" data-ldisplayname="'+item.ldisplayname+'" data-val="'+search+'">' + item.ldisplayname.replace(re, "<b>$1</b>")+'</div>';
+					return choiceItem;
+				},
+				onSelect: function(e, term, item){
+					$("#ldisplayKey").val(item.data('ldisplayname'));
+					$("#lpsid").val(item.data('lpsid'));
+					getUserProfile(item.data('lpsid')).then((profile)=>{
+						console.log(JSON.stringify(profile));
+						$("#UserPic").prop("src", profile.pictureUrl);
+					});
+				},
+			});
+		} 
+	}
+
+	function doSendTo(){
+		if ($("#lpsid").val() != ''){
+			var lpsid = $("#lpsid").val();
+			var message = $("#message").val();
+			if ((message.length > 0) && (message.length < 1000)){
+				//console.log(JSON.stringify(savedata));
+				var isSendBotMenu = $("#isSendBotMenu").prop("checked");
+				var sendtourl = "/" + appname+ "/webhook/sendmsg/to";
+				var senddata = {lpsid: lpsid, isSendMenu: isSendBotMenu, msg: message, destination: cookie[0].laccid};
+				$.post(sendtourl, senddata);
+				showMessage("ข้อความถูกส่งไปให้ลูกค้า/ผู้โดยสารแล้วครับ","#data-message", () => {
+					//$("#lpsid").val("");
+					$("#message").val("");
+				});
+			} else {
+				alert("ข้อความที่จะส่งต้องไม่ว่าง และยาวไม่เกิน 1,000 ตัวอักษร");
+			}
+		} else {
+			alert("คุณต้องพิมพ์ชื่อเพื่อค้นหาชื่อผู้ใช้ LINE แล้วเลือกชื่อจากรายการเท่านั้น\nลองใหม่ครับ");
+			$("#ldisplayKey").focus();
+		}
+	}
+</script>

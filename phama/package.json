@@ -1,0 +1,21 @@
+{
+  "name": "phama",
+  "version": "1.0.0",
+  "description": "Phama Bot",
+  "main": "phama.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "start phama"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oudsoft/phama.git"
+  },
+  "keywords": [
+    "oudsoft"
+  ],
+  "author": "oudsoft",
+  "license": "ISC"
+}

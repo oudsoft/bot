@@ -1,0 +1,246 @@
+<!--register.ejs-->
+<!DOCTYPE html>
+<html lang="en" >
+<html>
+    <head>
+        <title>ลงทะเบียนร้านอาหารใหม่</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" type="image/x-icon" href="/<%=appname%>/img/icon/foodOS.ico">
+		<script type="text/javascript" src='/<%=appname%>/script/jquery/jquery-ui-1.12.1.custom/external/jquery/jquery.js'></script>
+		<script type="text/javascript" src='/<%=appname%>/script/jquery/jquery-ui-1.12.1.custom/jquery-ui.js'></script>
+		<script type="text/javascript" src="/<%=appname%>/script/js/food-plugin.js"></script>
+		<script type="text/javascript" src="/<%=appname%>/script/js/food.js"></script>
+		<script type="text/javascript" src='/<%=appname%>/script/js/food-util.js'></script>
+
+		<script src="https://d.line-scdn.net/liff/1.0/sdk.js" /></script>
+
+	<style>
+		@font-face {
+			font-family: THSarabunNew;
+			font-weight: normal;
+			font-style: normal;
+			src: url("/<%=appname%>/font/THSarabunNew.ttf");
+		}
+		html {
+			font-size: 100%;
+		}
+		body, input, select, textarea,	button,	a {
+			font-size: 1.3em;
+			line-height: 1.5;
+			font-family: THSarabunNew /*{global-font-family}*/;
+		}
+		button {width: 100%;}
+		.align-center {text-align: center;}
+		input[type='file'] {font-size: 1.3em; line-height: 1.5;	font-family: THSarabunNew;}
+		#header {padding: 4px; border: 3px solid #ff6666; line-height: 0.75; position: relative; height: 160px}
+		#RegisterFormDiv1, #RegisterFormDiv2 {margin-top: 10px; padding: 4px; border: 3px solid #33cc00; line-height: 0.75;}
+		#RegisterFormDiv2 {display: none;}
+		.RNameBox {margin-top: 10px; padding: 5px;}
+		.RAddressBox {margin-top: 10px; padding: 5px;}
+		.RTelnoBox {margin-top: 10px; padding: 5px;}
+		.RSloganBox {margin-top: 10px; padding: 5px;}
+		.RNextCmdBox {margin-top: 10px; padding: 5px;}
+		.RShopLogoBox {margin-top: 10px; line-height: 0.45;}
+		.Require {color: red;}
+		.progressBar {width: 0px; height: 10px; background-color: #0ac04f;}
+		.ShopLogoImage {  width: 200px; height: 200px;  object-fit: contain;}
+		#name, #address, #tel, #slogan {position: relative;	top: 0px; border: 3px solid blue;}
+		</style>
+    </head>
+    <body>
+		<div data-role="page" data-theme="a">
+			<div id="header">
+				<h2>ลงทะเบียนร้านอาหารใหม่</h2>
+				<p>สะดวกกว่าทั้งคนขายคนซื้อ เมื่อลงทะเบียนเปิดร้านอาหารใหม่กับระบบตอบกลับอัตโนมัติที่ทันสมัย</p>
+				<p>กรอกข้อมูลที่จำเป็นไม่กี่รายการ ร้านอาหารของคุณก็จะมีคนช่วยตอบคำถามลูกค้าให้คุณทันที</p>
+			</div>
+			<div id="data-message" style="display: none; text-align: center"></div>
+			<div id="RegisterFormDiv1">
+				<div id="register-form">
+					<div class="RIntro">
+						<h2>ขั้นตอนที่ 1/2</h2>
+						<p>โปรดพิมพ์ข้อมูลที่จำเป็นให้ครบแล้วคลิกปุ่ม <b>ถัดไป</b></p>
+					</div>
+					<div class="RNameBox">
+						<label for="name">ชื่อบัญชี LINE@ ที่ต้องการ ยาวไม่เกิน 20 ตัวอักษร</label>
+						<input type="text" id="name" require="true" placeholder="ตั้งชื่อตามใจชอบได้ทั้งไทยและอังกฤษ" rule="\w{10,20}$" msg="ชื่อบัญชีจะถูกนำไปตั้งชื่อบัญชี LINE@ หน้าระบบตอบกลับอัตโนมัติ ยาวไม่เกิน 20 ตัวอักษร" tabindex="1" maxlength="20"/>&nbsp;&nbsp;<span class="Require">*</span>
+					</div>
+					<div class="RAddressBox">
+						<label for="address">สถานที่ร้าน</label>
+						<input type="text" id="address" require="true" placeholder="บอกสถานที่ให้ลูกค้าไปหาง่ายๆ" rule="^\w{10,}$" msg="บอกหน่อย ลูกค้าจะไปหาร้านได้อย่างไร" tabindex="2"/>&nbsp;&nbsp;<span class="Require">*</span>
+					</div>
+					<div class="RTelnoBox">
+						<label for="tel">เบอร์โทรศัพท์</label>
+						<input type="number" id="tel" require="true" placeholder="0999999999" rule="0*[1-9][0-9]*(\.[0-9]+)?" msg="โปรดป้อนเบอร์โทรศัพท์ร้านเพื่อสะดวกในการติดต่อกลับไปด้วยครับ" tabindex="3"/>&nbsp;&nbsp;<span class="Require">*</span>
+					</div>
+					<div class="RSloganBox">
+						<label for="slogan">คำขวัญร้าน</label>
+						<input type="text" id="slogan" require="true" placeholder="สร้างแรงจูงใจให้ลูกค้าอยากไป" rule="^\w{10,}$" msg="คำสั้นๆที่น่าจดจำเกี่ยวกับร้าน" tabindex="4"/>&nbsp;&nbsp;<span class="Require">*</span>
+					</div>
+					<div class="RNextCmdBox">
+						<button onclick="nextStep()">ถัดไป</button>
+					</div>
+					<input type="hidden" id="url"/>
+				</div>
+			</div>
+			<div id="RegisterFormDiv2">
+				<div class="RIntro">
+					<h2>ขั้นตอนที่ 2/2</h2>
+					<p>โปรดเลือกรูปภาพที่แจ่มๆ มาสักรูป สำหรับเอามาทำ โลโก้ร้าน </p>
+				</div>
+				<div class="RShopLogoBox">
+					<label for="image">รูปโลโก้ร้าน</label>
+					<div class="align-center">
+						<div id="ImageFrame">
+							<img id="image" class="ShopLogoImage"/>
+						</div>
+					</div>
+					<div class="UploadIndicator">
+						<div id="filename"></div>
+						<div id="progress"></div>
+						<div id="progressBar" class="progressBar"></div>
+					</div>
+					<input type="file" id="file" name='photos' onChange="return uploadImage();">
+				</div>
+				<div class="RSaveCmdBox">
+					<button onclick="register()">ลงทะเบียน</button>
+					<button onclick="toggleStep()">กลับ</button>
+				</div>
+			</div>
+		</div>
+   </body>
+</html>   
+<script src="/<%=appname%>/script/js/simpleUpload.min.js"></script>
+<script>
+	function doLoadUserid(userId){
+		return new Promise(function(resolve, reject) {
+			var url = "/" + appname+ "/foodreview/userid/" + userId;
+			$.post(url, params, function(data){
+				resolve(data);
+			}).fail(function(error) { 
+				console.log(JSON.stringify(error));
+				reject(error); 
+			});
+		});
+	}
+</script>
+<script>
+	var params = {};
+	var appname = '<%=appname%>';
+	var shopid = <%=shopid%>;
+	var foodid = <%=foodid%>;
+	var userId = '<%=userId%>';
+	var destination = '<%=destination%>';
+
+	var reviewdata = {shopid: shopid, foodid: foodid, appname: appname, userId: userId, destination: destination};
+	localStorage.removeItem(reviewdata.userId);
+	localStorage.setItem(reviewdata.userId, JSON.stringify(reviewdata));
+
+	//$("#header").empty();
+	var userData = eval("JSON.parse(localStorage.getItem('" + userId + "'))");
+
+	//$("#header").append("userData:: " + JSON.stringify(userData) );
+
+	function showWaitting(msg, target, degree, millisecond){
+		$(target).html("<h3>" + msg+ "</h3>");
+		$(target).css({"background-color": "yellow", "color": "blue", "font-size": "20px",  "text-align": "center", "height": "50px", "line-height": "50px", "position": "relative", "z-index":"5", "opacity": "0.25"});
+		$(target).show();
+		$(target).animateRotate(degree, millisecond);
+		setTimeout(function() {
+			$(target).removeAttr( "style" ).hide().fadeIn();
+			$(target).hide();
+		}, (millisecond+500) );
+	}
+
+	if (navigator.userAgent.toLowerCase().indexOf('line') > -1)	{
+		/* ไว้ใช้กับ liff */
+		liff.init( data => {
+			var userId = data.context.userId;
+			showWaitting("โปรดรอสักครู่ ระบบกำลังเริ่มทำงาน ", "#data-message", 360, 3000);
+			setTimeout(function(){
+				setupSystem();
+			}, 3500);
+		});
+	} else {
+		/*  ไว้ใช้กับ desktop browser */
+		var userId = 'U2ffb97f320994da8fb3593cd506f9c43';
+		showWaitting("ระบบกำลังเริ่ม โปรดรอสักครู่ ... ", "#data-message", 360, 3000);
+		setTimeout(function(){
+			setupSystem();
+		}, 3500);
+	}
+
+	function setupSystem(){
+
+	}
+
+	function toggleStep(){
+		$("#RegisterFormDiv1").toggle();
+		$("#RegisterFormDiv2").toggle();
+	}
+
+	function nextStep(){
+		$.when(validateForm("div#register-form :input", "#data-message")).done(function(isValid) {
+			if (isValid) {
+				$("#data-message").empty();
+				toggleStep();
+			} 
+		});
+	}
+
+	function register() {
+		doLoadUserid(userId).then((userRow) => {
+			var saveurl = "/" + appname + "/foodreview/register/add";
+			var savedata = $('#register-form').serializeArray().reduce(function(obj, item) {
+				obj[item.name] = item.value;
+				return obj;
+			}, {});
+			savedata.url = $('#url').val();
+			savedata.userid = userRow[0].id;
+			console.log(JSON.stringify(savedata));
+			$.post(saveurl, savedata, function(data){
+				//console.log(JSON.stringify(data));
+				if (data.status.code == 200){
+					/* trigger มาหาฉานว่าลงทะเบียนแล้ว */
+					showMessage("ลงทะเบียนสำเร็จ โปรดรอยืนยันขอเปิดร้านทางโทรศัพท์ของคุณ หมายเลข "+savedata.tel, "#data-message", function() {
+						var redirectUrl =  '/' + appname + '/foodreview?foodid='+ foodid + '&userId=' + userId + '&dest=' + destination;;
+						$(location).attr('href', redirectUrl);
+					});
+				} else {
+					showMessage("การลงทะเบียนมีปัญหา กรุณาแจ้งผู้ดูแลของคุณ","#data-message");
+				}
+			}).fail(function(error) { 
+				showMessage("การบันทึกข้อมูลขัดข้อง เนื่องจาก<br/>" + JSON.stringify(error) + "<br/>กรุณาแจ้งผู้ดูแลของคุณ", "#data-message");
+			});
+		});
+	}
+
+	function uploadImage(groupid){
+		var uploadUrl = "/" + appname+ "/foodreview/register/upload";
+		$('#file').simpleUpload(uploadUrl, {
+			start: function(file){
+				//upload started
+				$('#filename').html(file.name);
+				$('#progress').html("");
+				$('#progressBar').width(0);
+			},
+			progress: function(progress){
+				//received progress
+				$('#progress').html("ดำเนินการได้ : " + Math.round(progress) + "%");
+				$('#progressBar').width(progress + "%");
+			},
+			success: function(data){
+				console.log(JSON.stringify(data));
+				var logourl = '/<%=appname%>/img/upload/shop/' + data.filename;
+				$('#progress').html("สำเร็จ!");
+				$('#image').attr('src', logourl);
+				$('#url').val(logourl);
+			},
+			error: function(error){
+				//upload failed
+				$('#progress').html("Failure!<br>" + error.name + ": " + error.message);
+			}
+		});
+	}
+</script>
