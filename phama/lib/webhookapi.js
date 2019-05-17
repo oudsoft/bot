@@ -30,7 +30,7 @@ const BACK_MENU = [{id: 'x201', name: 'กลับ'}];
 exports.backmenu = BACK_MENU;
 const OTHER_MENU = [{id: 'x301', name: 'เลือกอย่างอื่นเพิ่ม'}, {id: 'x302', name: 'สั่งออเดอร์'}, {id: 'x303', name: 'กลับ'}];
 exports.othermenu = OTHER_MENU;
-const ORDER_TYPE_MENU = [{id: 'x401', name: 'ส่งของแล้วเก็บเงิน'}, {id: 'x402', name: 'ส่งทางไปรษณีย์'}];
+const ORDER_TYPE_MENU = [{id: 'x401', name: 'ส่งของแล้วเก็บเงิน'}, {id: 'x402', name: 'ส่งของทางไปรษณีย์'}];
 exports.ordertypemenu = ORDER_TYPE_MENU;
 
 /*********************************************/

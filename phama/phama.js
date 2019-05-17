@@ -94,6 +94,7 @@ var phamaitem = require('./app/phamaitem.js');
 var about = require('./app/about.js');
 var orders = require('./app/orders.js');
 var reviews = require('./app/reviews.js');
+var totalchat = require('./app/totalchat.js');
 
 /*webhook*/
 var webhook = require('./api/phamahook.js');
@@ -107,6 +108,7 @@ app.use('/phamaitem', phamaitem);
 app.use('/about', about);
 app.use('/orders', orders);
 app.use('/reviews', reviews);
+app.use('/totalchat', totalchat);
 
 app.use('/webhook', webhook);
 app.use('/phamareview', phamareview);

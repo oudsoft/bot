@@ -33,27 +33,6 @@ app.get('/', function(req, res) {
 
 /* Internal Method */
 
-function doLoadDinTableCodeno(dinid){
-	return new Promise(function(resolve, reject) {
-		pool.connect().then(client => {
-			client.query('BEGIN');
-			var sqlCmd = "select codeno, name from dintable where id=$1";
-			client.query(sqlCmd, [dinid]).then(res => {
-				if (res.rowCount > 0){
-					client.query('COMMIT');
-					resolve(res.rows);
-				} else {
-					resolve({});
-				}
-			}).catch(err => {
-				client.query('ROLLBACK');
-				logger().error(new Date()  + " >> index.js Error Stack @doLoadDinTableCodeno >> " + err.stack);
-				reject(err.stack)
-			});
-			client.release();
-		});
-	});
-}
 
 //* Export App Module */
 
