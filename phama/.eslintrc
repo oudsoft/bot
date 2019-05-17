@@ -8,6 +8,7 @@
         "amd": true,
         "browser": true,
         "node": true,
+    	"smarttabs": true
     },
     
     "rules": {

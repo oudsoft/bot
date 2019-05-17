@@ -54,4 +54,33 @@ git remote add origin git@github.com:oudsoft/qr.git
 git push --force origin master
 ดึงทุกอย่างจาก remote มาไว้ที่ locale
 
+สรุปขั้นตอนของการแก้ Conflict จะเป็นแบบนี้
+Pull จาก Remote ลงเครื่อง
+Conflict เกิดขึ้น
+แก้ไขโค้ดให้เหมาะสม
+Merge Commit
+Push ขึ้น Remote
 
+สรุปวัฏจักรของ Git ในชุดแรก
+เวลาพัฒนาโปรแกรมซักตัวก็จะมีขั้นตอนแบบนี้
+
+เขียนโค้ด
+เลือกไฟล์ที่ต้องการเข้า Staged
+Commit
+เขียนโค้ดต่อ
+เลือกไฟล์ที่ต้องการเข้า Staged
+Commit
+วนลูปไปเรื่อยๆจนกว่างานจะเสร็จ
+เวลาจะ Sync ข้อมูลไปที่ Remote ก็จะมีขั้นตอนแบบนี้
+
+Fetch เพื่อเช็คว่ามีใคร Push อะไรขึ้น Remote หรือป่าว (ไม่จำเป็นต้องทำก็ได้)
+ถ้ามีก็จะต้อง Pull โค้ดก่อน แล้ว Merge Commit ให้เรียบร้อย
+Push ข้อมูลขึ้น Remote
+เวลาจะ Sync ข้อมูลไปที่ Remote แบบมี Conflict ก็จะมีขั้นตอนแบบนี้
+
+Fetch เพื่อเช็คว่ามีใคร Push อะไรขึ้น Remote หรือป่าว (ไม่จำเป็นต้องทำก็ได้)
+Pull เพื่อดึงข้อมูลมาไว้ในเครื่อง
+เกิด Conflict
+แก้ไขโค้ดให้เหมาะสม
+Merge Commit
+Push ข้อมูลขึ้น Remote
