@@ -65,7 +65,7 @@ app.post('/', function(req, res) {
 				}
 			});
 		} else {
-
+	       logger().info(new Date()  + " >> req.query Unkhown Type>> " + JSON.stringify(req.query));
 		}
 	} else if (req.body.events[0].type == 'postback') {
 		libapi.doGetSession(userId, "tempBotStatus").then(function(botStatus){
@@ -96,10 +96,7 @@ app.post('/', function(req, res) {
 		});
 	} else if (req.body.events[0].type == 'unfollow') {
 		libapi.doDeleteSession(userId);
-	} else {
-
-	}
-	
+	} 
 });
 
 app.get('/userprofile/(:userId)/(:destination)', function(req, res) {
@@ -233,7 +230,7 @@ app.post('/closebill/(:userId)/(:shopid)/(:destination)', function(req, res) {
 						lineconnector.pushPostBack(userId, botToken, lineconnector.createBotMenu(sumText, libapi.mainmenu)); 
 					}else if(paytype=="2"){
 						lineconnector.pushMessage(userId, botToken, sumText).then(function(code){
-							doCreatePPQR(netAmount, shopid).then(function(qrLink){
+							libapi.doCreatePPQR(netAmount, shopid).then(function(qrLink){
 								lineconnector.pushImage(userId, botToken, qrLink, qrLink).then(function(code){
 									var qrUseText = "คุณสามารถใช้แอพลิเคชั่นจำพวกโมบายแบงค์กิ้งในโทรศัพท์มือของคุณสแกนคิวอาร์โค้ดด้านบนเพื่อชำระเงินได้ทันที\nหากต้องการใช้บริการอื่นๆ เชิญเลือกได้จากเมนูครับ";
 									lineconnector.pushPostBack(userId, botToken, lineconnector.createBotMenu(qrUseText, libapi.mainmenu)); 
@@ -308,7 +305,7 @@ app.post('/createbill/(:userId)/(:shopid)/(:destination)', function(req, res) {
 					lineconnector.getUserProfile(userId, botToken).then(function(userdata) {
 						var userProfile = JSON.parse(userdata);
 						var displayName = userProfile.displayName;
-						doRenderBill(orderid, billid, total, payamount, displayName).then(function(billLink) {
+						libapi.doRenderBill(orderid, billid, total, payamount, displayName).then(function(billLink) {
 							lineconnector.pushImage(userId, botToken, billLink, billLink).then(function(code){
 								var billUseText = "นั่นคือใบเสร็จรับเงิน\nทางร้านขอกราบขอบพระคุณเป็นอย่างสูง หวังว่าโอกาสหน้าเราจะได้รับใช้คุณอีกนะครับ\nหากต้องการใช้บริการอื่นๆ เชิญเลือกได้จากเมนูครับ";
 								lineconnector.pushPostBack(userId, botToken, lineconnector.createBotMenu(billUseText, libapi.mainmenu)); 

@@ -210,7 +210,7 @@ console.log(result) // 100
                 const tickets: Ticket[] = result[0]
                 const messages: Message[] = result[1]
                 const conversations: any[] = await this.extractConversationByTicket(messages, tickets)
-
+								... {// other so on}
            } catch (err) {
                 console.log(err)
             }
@@ -219,3 +219,27 @@ console.log(result) // 100
 /********************************************/   
 
 https://blog.thinknet.co.th/tech/debug-node-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-chrome-devtools-%E0%B9%80%E0%B8%9E%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1-productive
+
+/********************************************/   
+
+https://medium.com/@peerapat/host-%E0%B8%AB%E0%B8%A5%E0%B8%B2%E0%B8%A2-websites%E0%B9%83%E0%B8%99%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B8%A7-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-docker-nginx-b5002660f196
+
+/********************************************/   
+
+http://androidthai.in.th/git-and-github-article/191-github-on-vs-code.html
+
+/********************************************/  
+https://blog.nextzy.me/%E0%B8%A1%E0%B8%B2%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A3%E0%B8%B9%E0%B9%89-git-%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%87%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B9%86%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%96%E0%B8%AD%E0%B8%B0-427398e62f82
+
+/********************************************/  
+https://www.w3schools.com/howto/howto_css_switch.asp
+
+/********************************************/  
+https://www.hongpak.in.th/rooms/9570-%E0%B8%AB%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%8A%E0%B9%88%E0%B8%B221
+
+/********************************************/  
+Homework 2019-05-18 - 2019-05-20
+1. อ่านสรุปใน ppt
+2. Docker
+3. Elastic search
+/********************************************/ 

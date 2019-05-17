@@ -11,24 +11,12 @@
 <%- include ../footer.ejs %>
 
 <script>
-
-	function getUserRole(psid){
+	function doLoadUserRole(psid){
 		return new Promise(function(resolve, reject) {
 			var userRoleUrl = "/" + appname + "/userrole/" + psid;
 			$.get(userRoleUrl, params, function(data){
 				resolve(data);
 			}).fail(function(error) { 
-				console.log(JSON.stringify(error));
-				reject(error); 
-			});
-		});
-	}
-
-	function doLoadUserRole(psid){
-		return new Promise(function(resolve, reject) {
-			getUserRole(psid).then(function(userData) {
-				resolve(userData);
-			}).catch(function(error) { 
 				console.log(JSON.stringify(error));
 				reject(error); 
 			});

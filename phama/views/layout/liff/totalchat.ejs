@@ -1,0 +1,224 @@
+<!--totalchat.ejs-->
+<%- include ../header.ejs %>   
+<style>
+	#data-display {	padding-top: 10px;	padding-right: 10px;padding-bottom: 10px;padding-left: 10px;		}
+	input[type="button"] {width: 100%;}
+	.text-seacrh-input{display:block;}
+	input[type="checkbox"] {
+		-ms-transform: scale(2.0); /* IE 9 */
+		-webkit-transform: scale(2.0); /* Chrome, Safari, Opera */
+		transform: scale(2.0);
+	}
+	#SelectUserFormDiv {padding: 5px;}
+	#TotalChatFormDiv {display: none; padding: 5px;}
+</style>
+<h2 id= "welcome-user" style="text-align: center">เช็ทกับลูกค้า</h2>
+<div id="data-message" style="display: none; text-align: center"></div>
+<div id="data-display">
+	<div id="SelectUserFormDiv">
+		<div class="IldisplayBox">
+			<p>โปรดเลือกลูกค้าที่ต้องการเช็ท โดยพิมพฺ์ชื่อของลูกค้า(ซึ่งเป็นชื่อผู้ใช้ใน LINE) แล้วเลือกจากรายการลูกค้าที่ปรากฎขึ้นมา แล้วคลิกปุ่ม <b>ตกลง</b></p>
+			<label for="ldisplayKey">ชื่อผู้ใช้ใน LINE</label>
+			<input type="search" require="true" id="ldisplayKey" placeholder="ลองพิมพ์ชื่อผู้ใช้ใน LINE ดู" class="text-seacrh-input" tabindex="1" onkeyup="userTypingSearchLdisplayname()"/>
+			<div style="text-align: center;"><img id="UserPic" width="80" height="80"/></div>
+			<input type="hidden" id="lpsid"/>
+			<input type="button" value=" ตกลง " onclick="doSelectUser()"/>
+		</div>
+	</div>
+	<div id="TotalChatFormDiv">
+		<div id="UserProfileDiv">
+			<div id="DisplaynameDiv">user.ldisplayname</div>
+			<div id="UserPicture"><img id="UserPicture" src="" width="120" height="120"/></div>
+		</div>
+		<div id="ControlDiv">
+			<div>Switch Control ON/OFF Bot</div>
+			<div>Change User status normal/member</div>
+		</div>
+		<div id="ChatHistoryLog">
+
+		</div>
+		<div id="SendForm">
+			<div class="IMessageBox">
+				<label for="message">ข้อความ</label>
+				<textarea id='message' rows='4' cols='33'></textarea>
+			</div>
+			<div class="IMessageBox">
+				<input type="checkbox" id="isSendBotMenu" checked> ส่งเมนเมนูไปให้ลูกค้าด้วย
+			</div>
+			<div class="ISendCommandBox">
+				<input type="button" name="sendtoCmd" value=" ส่ง " onclick="doSendTo()"/>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- including footer content which is common for all pages -->
+<%- include ../footer.ejs %>
+
+<script>
+	function getLdisplaynameList(){
+		return new Promise(function(resolve, reject) {
+			var routeUrl = "/" + appname+ "/about/ldisplaynamelist";
+			$.post(routeUrl, params, function(data){
+				resolve(data);
+			}).fail(function(error) { 
+				console.log(JSON.stringify(error));
+				reject(error); 
+			});
+		});
+	}
+
+	function getUserProfile(userId){
+		return new Promise(function(resolve, reject) {
+			var routeUrl = "/" + appname+ "/webhook/userprofile/" + userId;
+			params = {destination: cookie[0].laccid};
+			$.post(routeUrl, params, function(data){
+				resolve(data);
+			}).fail(function(error) { 
+				console.log(JSON.stringify(error));
+				reject(error); 
+			});
+		});
+	}
+
+	function doLoadUserRole(psid){
+		return new Promise(function(resolve, reject) {
+			getUserRole(psid).then(function(userData) {
+				resolve(userData);
+			}).catch(function(error) { 
+				console.log(JSON.stringify(error));
+				reject(error); 
+			});
+		});
+	}
+
+	function getUserMemberStatus(lpsid){
+		return new Promise(function(resolve, reject) {
+
+		});
+	}
+	
+	function getUserBotStatus(lpsid) {
+		return new Promise(function(resolve, reject) {
+
+		});
+	}
+</script>
+<script>
+	var users;
+
+	function showWaitting(msg, target, degree, millisecond){
+		$(target).html("<h3>" + msg+ "</h3>");
+		$(target).css({"background-color": "yellow", "color": "blue", "font-size": "20px",  "text-align": "center", "height": "50px", "line-height": "50px", "position": "relative", "z-index":"5", "opacity": "0.25"});
+		$(target).show();
+		$(target).animateRotate(degree, millisecond);
+		setTimeout(function() {
+			$(target).removeAttr( "style" ).hide().fadeIn();
+			$(target).hide();
+		}, (millisecond+500) );
+	}
+
+	function setupSystem(userData) {
+		getLdisplaynameList().then(function(uRows) {
+			//console.log(JSON.stringify(uRows));
+			users = uRows;
+		});
+	}
+
+	showWaitting("ระบบกำลังเริ่ม โปรดรอสักครู่ ... ", "#data-message", 360, 3000);
+	if (navigator.userAgent.toLowerCase().indexOf('line') > -1)	{
+		/* ไว้ใช้กับ liff */
+		liff.init( data => {
+			var userId = data.context.userId;
+			doLoadUserRole(userId).then(function(userData) {
+				showWaitting("ระบบกำลังเริ่ม โปรดรอสักครู่ ... ", "#data-message", 360, 3000);
+				setTimeout(function(){
+					if(userProfile.length > 0){
+						setupSystem(userData);
+					} else {
+						alert("ระบบไม่พบสิทธิ์อนุญาตเข้าใช้งานของคุณ");
+					}
+				}, 3500);
+			});
+		});
+	} else {
+		/*  ไว้ใช้กับ desktop browser */
+		var userId = 'U2ffb97f320994da8fb3593cd506f9c43';
+		doLoadUserRole(userId).then(function(userData) {
+			console.log("userData-> " + JSON.stringify(userData));
+			showWaitting("ระบบกำลังเริ่ม โปรดรอสักครู่ ... ", "#data-message", 360, 3000);
+			setTimeout(function(){
+				if(userData.length > 0){
+					setupSystem(userData);
+					//$.event.trigger({type: "newMessage", userProfile: userProfile});
+				} else {
+					alert("ระบบไม่พบสิทธิ์อนุญาตเข้าใช้งานของคุณ");
+				}
+			}, 3500);
+		});
+	}
+
+	function userTypingSearchLdisplayname() {
+	if ($("#ldisplayKey").val() != ''){ 
+			$("#ldisplayKey").autoComplete({
+				minChars: 1,
+				source: function(term, suggest){
+					term = term.toLowerCase();
+					var choices = users;
+					var suggestions = [];
+					for (i=0;i<choices.length;i++)
+						if (~(choices[i].id+' '+choices[i].ldisplayname).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+					suggest(suggestions);
+				},
+				renderItem: function (item, search){
+					search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+					var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+					var choiceItem = '<div class="autocomplete-suggestion" data-lpsid="'+item.lpsid+'" data-ldisplayname="'+item.ldisplayname+'" data-val="'+search+'">' + item.ldisplayname.replace(re, "<b>$1</b>")+'</div>';
+					return choiceItem;
+				},
+				onSelect: function(e, term, item){
+					$("#ldisplayKey").val(item.data('ldisplayname'));
+					$("#lpsid").val(item.data('lpsid'));
+					getUserProfile(item.data('lpsid')).then((profile)=>{
+						console.log(JSON.stringify(profile));
+						$("#UserPic").prop("src", profile.pictureUrl);
+					});
+				},
+			});
+		} 
+	}
+
+	function doSelectUser(){
+		var lpsid = $("#lpsid").val();
+		getUserProfile(lpsid).then((profile)=>{
+			//getUserMemberStatus(lpsid).then((uStatus)=>{
+				//getUserBotStatus(lpsid).then((bStatus)=>{
+					$("#DisplaynameDiv").append("<b>" + profile.ldisplayname + "</b>");
+					$("#UserPicture").append("<img src='" +  profile.pictureUrl + "' width='120' height='120'/>");
+
+					$("#SelectUserFormDiv").toggle();
+					$("#TotalChatFormDiv").toggle();
+		});
+	}
+
+
+
+
+	function doSendTo() {
+		var lpsid = $("#lpsid").val();
+		var message = $("#message").val();
+		if ((message.length > 0) && (message.length < 1000)){
+			//console.log(JSON.stringify(savedata));
+			var isSendBotMenu = $("#isSendBotMenu").prop("checked");
+			var sendtourl = "/" + appname+ "/webhook/sendmsg/to";
+			var senddata = {lpsid: lpsid, isSendMenu: isSendBotMenu, msg: message, destination: cookie[0].laccid};
+			$.post(sendtourl, senddata);
+			showMessage("ข้อความถูกส่งไปให้ลูกค้า/ผู้โดยสารแล้วครับ","#data-message", () => {
+				//$("#lpsid").val("");
+				$("#message").val("");
+			});
+		} else {
+			alert("ข้อความที่จะส่งต้องไม่ว่าง และยาวไม่เกิน 1,000 ตัวอักษร");
+		}
+	}
+</script>
