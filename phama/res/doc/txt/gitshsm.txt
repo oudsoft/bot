@@ -1,0 +1,57 @@
+2019-05-16
+Fixed & Deploy Response time on AgentChatReport / FWD <รอ approve>
+
+Step-1
+git init ไว้สร้าง Git repository
+git status ตรวจสอบสถานะไฟล์ของ working directory และ staging area
+git add เพิ่มไฟล์ the working directory เข้าสู่ staging area
+git diff แสดงความแตกต่างของไฟล์ระหว่าง working directory กับ staging area
+git commitเก็บประวัติการแก้ไขแบบถาวรจาก staging area ไว้ใน repository
+git log  <git hist> แสดงรายการที่ commit มาทั้งหมด
+
+Step-2
+git show HEAD <HEAD : คือ pointer ที่เก็บทุกๆ commit ของเรา โดยปกติแล้ว HEAD จะชี้ไปที่ commit ล่าสุด reference ของ HEAD จะอยู่ในรูปแบบ SHA>
+git checkout HEAD filename <เมื่อต้องการย้อนกลับแก้ไขไฟล์ filename กลับไปยังการ HEAD : commit ล่าสุด ก็จะได้ไฟล์กลับมาเหมือนเดิม>
+git reset HEAD filename <เมื่อต้องการทำให้ไฟล์ filename กลับมาเป็นสถานะ unstaged>
+git reset SHA <ยกเลิกการแก้ไขกลับไปยัง commit ก่อนหน้าตามที่เลือก [SHA เป็นเลข 7 หลัก]>
+
+Step-3
+git branch
+git branch new_branch_name <สร้าง branch ใหม่ ชื่อ new_branch_name>
+git checkout new_branch_name <สลับไปใช้งาน branch ใหม่ ชื่อ new_branch_name>
+git checkout -b branch_name <สร้าง branch ใหม่ ชื่อ branch_name และสลับไปใช้งาน branch ใหม่นั้นทันที>
+git checkout master
+git merge branch_name <merge branch ชื่อ branch_name เข้ากับ master>
+it branch -d branch_name <ลบ branch ชื่อ branch_name>
+
+Step-4
+git clone remote_location clone_name <`สั่งให้ git ‘clone’ remote_location มาไว้ที่เครื่องของเราชื่อโฟลเดอร์ clone_name>
+	เช่น git clone git@github.com:oudsoft/bot.git
+	อธิบาย  Git จะสร้าง remote address ขึ้นมาชื่อ origin เพื่อความสะดวกในการอ้างอิงถึง remote repository โดยใช้เพียงแค่ชื่อ ถ้าต้องการจะดูว่าใน Git project ของเรามีรายการ remotes อะไรบ้าง ใช้คำสั่ง git remote -v จากในไดเรกทอรีของ Git project
+	$ git remote -v
+	origin  https://github.com/oudsoft/bot.git (fetch)
+	origin  https://github.com/oudsoft/bot.git (push)
+	
+	fetch คือ remote address ที่จะให้ไปดึงจากฝั่ง remote มายังฝั่ง local
+	push คือ remote address ที่จะให้เอาจากฝั่ง local ไปรวมที่ฝั่ง remote 
+	วิธีปฎิบัติ เมื่อเริ่มงาน ควนตรวจสอบว่า remote มีการเปลี่ยนแปลงหรืออัพเดทอะไรบ้าง ด้วยคำสั่ง git fetch ถ้า remote มีการอัพเดท ให้ทำการ push เพื่ออัพเดท localกับ  remote ให้เหมือนกันกันเสียก่อน ทั้งนี้เพื่อป้องกันการ conclict
+git fetch
+git status ถ้าไม่เท่ากัน ให้ใช้
+git merge origin/master
+
+git pull <=git fetch + git merge origin/master>
+
+git push -u origin master <อัพโหลดจาก local ไปทับที่ remote>
+
+origin สรุปแล้วคือ ชื่อ alias บน remote
+
+
+Extension
+เรียก remote branch ที่ชื่อ mydev ให้เป็น origin ของ remote ที่พร้อมจะเชื่อมต่อกับ working directory/reposity ปัจจุบัน ของ localhost 
+git remote add origin git@github.com:oudsoft/mydev.git
+git remote add origin git@github.com:oudsoft/qr.git
+บังคับให้ push ทุกอย่างที่ commit แล้วบน localhost ไปที่ orgin ของ remote ที่เซ็ไปล้วจากคำสั่งบน
+git push --force origin master
+ดึงทุกอย่างจาก remote มาไว้ที่ locale
+
+
