@@ -22,11 +22,7 @@ git checkout new_branch_name <สลับไปใช้งาน branch ให
 git checkout -b branch_name <สร้าง branch ใหม่ ชื่อ branch_name และสลับไปใช้งาน branch ใหม่นั้นทันที>
 git checkout master
 git merge branch_name <merge branch ชื่อ branch_name เข้ากับ master>
-<<<<<<< HEAD
 git branch -d branch_name <ลบ branch ชื่อ branch_name>
-=======
-it branch -d branch_name <ลบ branch ชื่อ branch_name>
->>>>>>> master
 
 Step-4
 git clone remote_location clone_name <สั่งให้ git ‘clone’ remote_location มาไว้ที่เครื่องของเราชื่อโฟลเดอร์ clone_name>
