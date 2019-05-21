@@ -41,7 +41,7 @@ git merge origin/master
 
 git pull <=git fetch + git merge origin/master>
 
-git push -u origin master <อัพโหลดจาก local ไปทับที่ remote>
+git push -u origin master <อัพโหลดจาก local ไปทับที่ remote> < option -u : เอาไว้จำ parameter origin master ครั้งต่อๆ ไปก็พิมพ์แค่ git push>
 
 origin สรุปแล้วคือ ชื่อ alias บน remote
 
@@ -84,3 +84,32 @@ Pull เพื่อดึงข้อมูลมาไว้ในเครื
 แก้ไขโค้ดให้เหมาะสม
 Merge Commit
 Push ข้อมูลขึ้น Remote
+
+[Work Shop]
+ดึงข้อมูลจากฝั่ง remote ว่ามีการเปลี่ยนแปลงอะไรเกิดขึ้นบ้าง
+$ git fetch
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:somprasongd/github-demo
+4fae075..9595d50  master     -> origin/master
+
+ตรวจสอบด้วย git status จะได้ข้อความดังนี้
+$ git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+ (use "git pull" to update your local branch)
+nothing to commit, working tree clean
+
+หมายความว่าบน local ( branch master)นั้นตามหลังบน remote ( branch origin/master) อยู่ 1 commit ซึ่งเราสามารถรวมโค้ดจาก remote มายัง local ได้ด้วยวิธีเดียวกันกับการรวมโค้ดจาก branch อื่น โดยใช้คำสั่ง git merge โดยระบุชื่อ branch เป็น “origin/master”
+
+$ git merge origin/master
+Updating 4fae075..9595d50
+Fast-forward
+README.md | 2 ++
+1 file changed, 2 insertions(+)
+$ cat README.md
+# github-demo
+A simple remote repository demo via GitHub
+This line from remote repository.
