@@ -1,0 +1,58 @@
+{"events":[
+	{
+		"type":"message",
+		"replyToken":"04ea1975567f4760bbdca5c3a81a596e",
+		"source":{
+			"userId":"U2ffb97f320994da8fb3593cd506f9c43",
+			"type":"user"
+		},
+		"timestamp":1543066145102,
+		"message":{
+			"type":"text",
+			"id":"8910001903133",
+			"text":"Hello Mr.QR"
+		}
+	}],
+	"destination":"Uf467ac7a18a723c7c522194331acfdf9"}
+
+
+{
+  "to": "U3c28a70ed7c5e7ce2c9a7597...",
+  "messages": [
+    {
+      "type": "text",
+      "text": "Hello Quick Reply!",
+      "quickReply": {
+        "items": [
+
+          {
+            "type": "action",
+            "action": {
+              "type": "postback",
+              "label": "Postback",
+              "data": "action=buy&itemid=123",
+              "displayText": "Buy"
+            	}
+            },
+
+	..
+	]
+	} //quickReply
+	}
+	] //messages
+}
+
+{"events":[{
+	"type":"postback",
+	"replyToken":"b9a9138e3f85484a8da4f7058c207944",
+	"source":{
+		"userId":"U2ffb97f320994da8fb3593cd506f9c43",
+		"type":"user"
+	},
+	"timestamp":1543069580769,
+	"postback":{
+		"data":"action=buy&itemid=1231"
+	}
+}],
+"destination":"Uf467ac7a18a723c7c522194331acfdf9"
+}

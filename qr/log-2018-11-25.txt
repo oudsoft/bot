@@ -1,0 +1,130 @@
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_9101543117902530.png >> Sun Nov 25 2018 10:51:42 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_9101543117902634.pdf >> Sun Nov 25 2018 10:51:42 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_912.241543119089493.png >> Sun Nov 25 2018 11:11:29 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_912.241543119089596.pdf >> Sun Nov 25 2018 11:11:29 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_1010.091543120471887.png >> Sun Nov 25 2018 11:34:31 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_1010.091543120471989.pdf >> Sun Nov 25 2018 11:34:32 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_1089.911543121984533.png >> Sun Nov 25 2018 11:59:44 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_1108.091543122103921.png >> Sun Nov 25 2018 12:01:44 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_1089.011543122300288.png >> Sun Nov 25 2018 12:05:00 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_1089.011543122300392.pdf >> Sun Nov 25 2018 12:05:00 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/undefined_1200.081543122403948.png >> Sun Nov 25 2018 12:06:44 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/undefined_1200.081543122404052.pdf >> Sun Nov 25 2018 12:06:44 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_1023.131543122777983.png >> Sun Nov 25 2018 12:12:58 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_1023.131543122778085.pdf >> Sun Nov 25 2018 12:12:58 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_5001543123140991.png >> Sun Nov 25 2018 12:19:01 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_5001543123141091.pdf >> Sun Nov 25 2018 12:19:01 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543136760187.png >> Sun Nov 25 2018 16:06:00 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543137020477.png >> Sun Nov 25 2018 16:10:20 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543137508157.png >> Sun Nov 25 2018 16:18:28 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543137518701.png >> Sun Nov 25 2018 16:18:38 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543137521485.png >> Sun Nov 25 2018 16:18:41 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543137631213.png >> Sun Nov 25 2018 16:20:31 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543137679609.png >> Sun Nov 25 2018 16:21:19 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543138293172.png >> Sun Nov 25 2018 16:31:33 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543138696807.png >> Sun Nov 25 2018 16:38:16 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543139229841.png >> Sun Nov 25 2018 16:47:09 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543139239465.png >> Sun Nov 25 2018 16:47:19 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_5001543139380634.png >> Sun Nov 25 2018 16:49:40 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_5001543139380736.pdf >> Sun Nov 25 2018 16:49:40 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543139867114.png >> Sun Nov 25 2018 16:57:47 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543140317220.png >> Sun Nov 25 2018 17:05:17 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543140329735.png >> Sun Nov 25 2018 17:05:29 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543140446573.png >> Sun Nov 25 2018 17:07:26 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/140000835077746_510.001543140925965.png >> Sun Nov 25 2018 17:15:26 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_5001543141077537.png >> Sun Nov 25 2018 17:17:57 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_5001543141077593.pdf >> Sun Nov 25 2018 17:17:57 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> QR >> Sun Nov 25 2018 17:34:39 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> TELEPHONE_NO >> Sun Nov 25 2018 17:34:45 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 0835077746 >> Sun Nov 25 2018 17:34:57 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> ประเสริฐ สุดชดา >> Sun Nov 25 2018 17:35:15 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 1079 >> Sun Nov 25 2018 17:35:25 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> YES. >> Sun Nov 25 2018 17:35:32 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_10791543142132899.png >> Sun Nov 25 2018 17:35:32 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> QR >> Sun Nov 25 2018 17:37:48 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> TELEPHONE_NO >> Sun Nov 25 2018 17:37:53 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 0835077746 >> Sun Nov 25 2018 17:38:13 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> ประเสริฐ สุดชดา >> Sun Nov 25 2018 17:38:28 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 669 >> Sun Nov 25 2018 17:38:38 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> YES. >> Sun Nov 25 2018 17:38:44 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_6691543142325277.png >> Sun Nov 25 2018 17:38:45 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_6691543142325347.pdf >> Sun Nov 25 2018 17:38:45 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/3800800027211_5001543145730676.png >> Sun Nov 25 2018 18:35:30 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/3800800027211_5001543145730751.pdf >> Sun Nov 25 2018 18:35:30 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> QR >> Sun Nov 25 2018 19:18:08 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> TELEPHONE_NO >> Sun Nov 25 2018 19:18:14 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 0835077746 >> Sun Nov 25 2018 19:18:32 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> ประเสริฐ สุดชดา >> Sun Nov 25 2018 19:18:48 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 500 >> Sun Nov 25 2018 19:19:01 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> YES. >> Sun Nov 25 2018 19:19:06 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_5001543148347434.png >> Sun Nov 25 2018 19:19:07 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_5001543148347503.pdf >> Sun Nov 25 2018 19:19:07 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> YES. >> Sun Nov 25 2018 19:21:18 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/undefined_undefined1543148479643.png >> Sun Nov 25 2018 19:21:19 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/undefined_undefined1543148479718.pdf >> Sun Nov 25 2018 19:21:19 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> QR >> Sun Nov 25 2018 19:21:33 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> TELEPHONE_NO >> Sun Nov 25 2018 19:21:44 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 0835077746 >> Sun Nov 25 2018 19:22:02 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> ประเสริฐ สุดชดา >> Sun Nov 25 2018 19:22:16 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 500 >> Sun Nov 25 2018 19:22:24 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> YES. >> Sun Nov 25 2018 19:24:10 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_5001543148652391.png >> Sun Nov 25 2018 19:24:12 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_5001543148652453.pdf >> Sun Nov 25 2018 19:24:12 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> QR >> Sun Nov 25 2018 19:24:30 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> TELEPHONE_NO >> Sun Nov 25 2018 19:24:36 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 0835077746 >> Sun Nov 25 2018 19:25:02 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> ประเสริฐ สุดชดา >> Sun Nov 25 2018 19:25:13 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 500 >> Sun Nov 25 2018 19:25:18 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> YES. >> Sun Nov 25 2018 19:25:23 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_5001543148725337.png >> Sun Nov 25 2018 19:25:25 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_5001543148725393.pdf >> Sun Nov 25 2018 19:25:25 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"00020101021129340016A000000677010111031508350777465802TH5406500.0053037646304CCFF","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543149094182.png >> Sun Nov 25 2018 19:31:34 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"00020101021129340016A000000677010111031508350777465802TH5406500.0053037646304CCFF","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543149113081.png >> Sun Nov 25 2018 19:31:53 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"00020101021129340016A000000677010111031508350777465802TH5406500.0053037646304CCFF","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543149158934.png >> Sun Nov 25 2018 19:32:38 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111031508350777465802TH5406500.0053037646304CCFF >> Sun Nov 25 2018 19:38:20 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543149500484.png >> Sun Nov 25 2018 19:38:20 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111031508350777465802TH5406500.0053037646304CCFF >> Sun Nov 25 2018 19:41:45 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543149705327.png >> Sun Nov 25 2018 19:41:45 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111031508350777465802TH5406500.0053037646304CCFF >> Sun Nov 25 2018 19:43:34 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543149814490.png >> Sun Nov 25 2018 19:43:34 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111031508350777465802TH5406500.0053037646304CCFF >> Sun Nov 25 2018 19:47:10 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543150030584.png >> Sun Nov 25 2018 19:47:10 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111031508350777465802TH5406500.0053037646304CCFF >> Sun Nov 25 2018 19:47:14 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543150034773.png >> Sun Nov 25 2018 19:47:14 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111031508350777465802TH5406500.0053037646304CCFF >> Sun Nov 25 2018 19:49:46 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543150186765.png >> Sun Nov 25 2018 19:49:46 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111031508350777465802TH5406500.0053037646304CCFF >> Sun Nov 25 2018 19:52:00 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543150321037.png >> Sun Nov 25 2018 19:52:01 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111011308350777465802TH5406500.00530376463047A8E >> Sun Nov 25 2018 19:53:49 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543150429910.png >> Sun Nov 25 2018 19:53:49 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111011308350777465802TH5406500.00530376463047A8E >> Sun Nov 25 2018 19:53:59 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543150440002.png >> Sun Nov 25 2018 19:54:00 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111011308350777465802TH5406500.00530376463047A8E >> Sun Nov 25 2018 19:56:16 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543150576589.png >> Sun Nov 25 2018 19:56:16 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111011308350777465802TH5406500.00530376463047A8E >> Sun Nov 25 2018 19:56:28 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_500.001543150588233.png >> Sun Nov 25 2018 19:56:28 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> QR >> Sun Nov 25 2018 19:58:00 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> TELEPHONE_NO >> Sun Nov 25 2018 19:58:35 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111011308350777465802TH5406500.00530376463047A8E >> Sun Nov 25 2018 20:01:04 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_5001543150864143.png >> Sun Nov 25 2018 20:01:04 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_5001543150864215.pdf >> Sun Nov 25 2018 20:01:04 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> TELEPHONE_NO >> Sun Nov 25 2018 20:02:47 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 0835077746 >> Sun Nov 25 2018 20:03:10 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> ประเสริฐ สุดชดา >> Sun Nov 25 2018 20:03:42 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> 500 >> Sun Nov 25 2018 20:05:03 GMT+0700 (Indochina Time)","level":"info"}
+{"message":">> 1826296330819486 >> YES. >> Sun Nov 25 2018 20:05:12 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111011308350777465802TH5406500.00530376463047A8E >> Sun Nov 25 2018 20:05:13 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_5001543151113992.png >> Sun Nov 25 2018 20:05:14 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_5001543151114067.pdf >> Sun Nov 25 2018 20:05:14 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111011308350777465802TH5406500.00530376463047A8E >> Sun Nov 25 2018 20:06:50 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_5001543151210323.png >> Sun Nov 25 2018 20:06:50 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_5001543151210383.pdf >> Sun Nov 25 2018 20:06:50 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"01 >> 00020101021129340016A000000677010111011308350777465802TH5406500.00530376463047A8E >> Sun Nov 25 2018 20:10:29 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/0835077746_5001543151429672.png >> Sun Nov 25 2018 20:10:29 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/0835077746_5001543151429728.pdf >> Sun Nov 25 2018 20:10:29 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"02 >> 00020101021129370016A000000677010111021338008005827115802TH5406500.0053037646304ACF8 >> Sun Nov 25 2018 20:28:28 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PNG file was created at: /home/sasurean/node/src/qrdownload/3800800582711_5001543152508831.png >> Sun Nov 25 2018 20:28:28 GMT+0700 (Indochina Time)","level":"info"}
+{"message":"The PDF file was created at: /home/sasurean/node/src/pdfdownload/3800800582711_5001543152508885.pdf >> Sun Nov 25 2018 20:28:28 GMT+0700 (Indochina Time)","level":"info"}
