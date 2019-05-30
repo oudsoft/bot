@@ -61,6 +61,14 @@ https://www.myshopman.com/otop/script/ckeditor/samples/img/github-top.png
 
 
 
+grep -rl "string" /path
+
+grep -Hrn 'เปิดหน้าต่างจัดการไฟล์อัพโหลด' node/otop/views/script/ckeditor
+
+grep -Hrn 'browseServer' node/otop/views/script/ckeditor
+
+node/otop/views/script/ckeditor/plugins/image/dialogs/image.js
+
 
 
 
