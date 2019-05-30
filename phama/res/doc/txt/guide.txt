@@ -246,3 +246,8 @@ Homework 2019-05-18 - 2019-05-20
 พริกกรอบ Chilli Crisps
 
 ต ต ต
+
+
+/********************************************/ 
+KCEditor
+https://www.itoffside.com/howto-ckeditor-text-editor-wysiwyg/

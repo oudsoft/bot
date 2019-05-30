@@ -1,13 +1,14 @@
-2019-05-16
-Fixed & Deploy Response time on AgentChatReport / FWD <รอ approve>
 
 Step-1
 git init ไว้สร้าง Git repository
 git status ตรวจสอบสถานะไฟล์ของ working directory และ staging area
 git add เพิ่มไฟล์ the working directory เข้าสู่ staging area
+git rm ลบไฟล์ออกจาก staging area ไปสู่ unstaging
 git diff แสดงความแตกต่างของไฟล์ระหว่าง working directory กับ staging area
-git commitเก็บประวัติการแก้ไขแบบถาวรจาก staging area ไว้ใน repository
+git commit เก็บประวัติการแก้ไขแบบถาวรจาก staging area ไว้ใน repository
+git commit -am '.....' commit พร้อมทั้ง add ไฟล์ที่แก้ไขเสร็จ
 git log  <git hist> แสดงรายการที่ commit มาทั้งหมด
+git clean -f ลบไฟล์ทั้งหมดที่ไม่รู้จัก
 
 Step-2
 git show HEAD <HEAD : คือ pointer ที่เก็บทุกๆ commit ของเรา โดยปกติแล้ว HEAD จะชี้ไปที่ commit ล่าสุด reference ของ HEAD จะอยู่ในรูปแบบ SHA>
@@ -113,3 +114,7 @@ $ cat README.md
 # github-demo
 A simple remote repository demo via GitHub
 This line from remote repository.
+
+
+chery-pick
+git cherry-pick efde314cd068bdfd6ed46ce9dc4ff1e75a9c7f07
