@@ -2,7 +2,7 @@ const moment = require("moment");
 const option = {timezoneOffset: -420};
 
 async function doConvertUserChats(){
-    const srcob = require('../../doc/json/userChats.json');
+    const srcob = require('../doc/json/userChats.json');
     let cobs = srcob["Ua25f68289b6dcc62653c6a6fb9db4787"];
     const ref = cobs.map((item)=>{
         return {
@@ -16,7 +16,7 @@ async function doConvertUserChats(){
 }
 
 async function doConvertUserTickets(){
-    const srcob = require('../../doc/json/userTickets.json');
+    const srcob = require('../doc/json/userTickets.json');
     let logs = srcob["Ua25f68289b6dcc62653c6a6fb9db4787"];
     // logs = srcob.log;
     const ref = logs.map((item)=>{
@@ -46,8 +46,14 @@ function runAsync() {
     })
 }
 
+async function runAsync2() {
+    const promises = await [doConvertUserChats(), doConvertUserTickets()]
+    const result = await Promise.all(promises)
+    return (result);
+}
+
+/*
 runAsync().then((result)=>{
-    //console.log(JSON.stringify(result[0]));
     result[0].forEach(item => {
         console.log("เมื่อ " + item.sent_at + "\n");
         console.log("โดย " + item.user_name + "\n");       
@@ -58,3 +64,19 @@ runAsync().then((result)=>{
         console.log("ปิด " + item.closed_at + "\n");              
     });
 })
+*/
+
+async function run(){
+    const sync = await runAsync2();
+    sync[0].forEach(item => {
+        console.log("เมื่อ " + item.sent_at + "\n");
+        console.log("โดย " + item.user_name + "\n");       
+        console.log("ข้อความ " + item.message + "\n\n");          
+    });
+    sync[1].forEach(item => {
+        console.log("เปิด " + item.created_at + "\n");
+        console.log("ปิด " + item.closed_at + "\n");              
+    });
+}
+
+run();

@@ -54,6 +54,8 @@ step of dev work flow
 4. big test
 5. public
 
+/blog/web
+/blog/bot
 
 https://github.com/dhirajpatra/ckeditor_nodejs_with_img_upload
 
@@ -64,18 +66,29 @@ https://www.myshopman.com/otop/script/ckeditor/samples/img/github-top.png
 grep -rl "string" /path
 
 grep -Hrn 'เปิดหน้าต่างจัดการไฟล์อัพโหลด' node/otop/views/script/ckeditor
-
+==> browseServer
 grep -Hrn 'browseServer' node/otop/views/script/ckeditor
 
 node/otop/views/script/ckeditor/plugins/image/dialogs/image.js
 
 
+{type:"button",id:"browse",className:"cke_dialog_image_browse",filebrowser:{action:"Browse",target:"Link:txtUrl",url:d.config.filebrowserImageBrowseLinkUrl},style:"float:right",hidden:!0,label:d.lang.common.browseServer}
+
+grep -Hrn 'filebrowserImageBrowseLinkUrl' node/otop/views/script/ckeditor
+
+rep -Hrn 'dialogs/image.js' node/otop/views/script/ckeditor/ckeditor.js
+
+node/otop/views/script/ckeditor
+CKEDITOR.plugins.add("image",{requires:"dialog",init:function(b){if(!b.plugins.detectConflict("image",["easyimage","image2"])){CKEDITOR.dialog.add("image",this.path+"dialogs/image.js");var a="img[alt,!src]{border-style,border-width,float,height,margin,margin-bottom,margin-left,margin-right,margin-top,width}
 
 
+dialog modal
+https://jquerymodal.com/
 
-
-
-
+ckeditor/plugins/imageuploader/imgbrowser.php  --> imgbrowser.js
+[DIALOG]
+1. additional upload
+2. show Preview of List All myImage in my Folder
 
 
 
