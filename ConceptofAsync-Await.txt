@@ -1,0 +1,39 @@
+
+Concept of Async/Await with return value
+
+
+function doFindArray(arrs, target){
+	const found = arrs.find((item) => {
+		return item.name == target
+	});
+	return found;
+}
+
+function doRunAsync(arrs, target) {
+    const promises = [doFindArray(arrs, target)];
+    const result = Promise.all(promises)
+    return result;
+}
+
+async function doRunFind(){
+    let arrs = [
+        {id: 1, name: 'Hello', other: '30'},
+        {id: 2, name: 'World', other: '70'},
+        {id: 3, name: 'foo', other: '11'},  
+        {id: 4, name: 'boo', other: '14'},   
+        {id: 5, name: 'normal', other: '21'},    
+        {id: 6, name: 'extra', other: '23'},                          
+    ];
+    let target = 'boo';
+
+    const founds = await doRunAsync(arrs, target);
+    if (founds){
+        founds.forEach(item => {
+            console.log(item);
+        });
+    } else {
+        console.log("Not Found");
+    }
+}
+
+doRunFind();

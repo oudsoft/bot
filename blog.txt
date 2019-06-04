@@ -6,6 +6,7 @@ User [id, useId, displayname, picprofile, userclassid, lastupd]
 Author [userid, fname, lname, address, tel, birthday, occupie, lastupd]
 
 Articletype [id, name, descr, lastupd] <ppt, policy, economc, social, education>
+<<<<<<< HEAD
 Article [id, title, content, authorid, onlinests, createddt, upddt]
 
 ReportType[]<บทความไม่เหมาะสม / Comment ไม่เหมาะสม / system bug>
@@ -16,6 +17,17 @@ Like [id, articleid, userid, lastupd]
 Comment [id, articleid, content, userid, lastupd]
 Reply [id, commentid, reply, userid, lastupd]
 
+=======
+Article [id, title, content, authorid, createddt, upddt]
+
+Report[]<บทความไม่เหมาะสม>
+Report[]<Comment ไม่เหมาะสม>
+Report[]<Bug>
+
+Viewlog [id, articleid, userid, lastupd]
+Like [id, articleid, userid, lastupd]
+Comment [id, articleid, content, userid, lastupd]
+>>>>>>> botdev
 AlertMessage[id, from, to, msg, lastupd]
 
 
@@ -54,6 +66,7 @@ step of dev work flow
 4. big test
 5. public
 
+<<<<<<< HEAD
 /blog/web
 /blog/bot
 
@@ -107,3 +120,5 @@ https://medium.com/linedevth/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%9E%E0%B8%A5%E0%B8
 
 
 
+=======
+>>>>>>> botdev
