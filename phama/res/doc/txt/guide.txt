@@ -249,3 +249,12 @@ Homework 2019-05-18 - 2019-05-20
 พริกกรอบ Chilli Crisps
 
 ต ต ต
+
+
+
+
+jquery load content on scroll
+https://stackoverflow.com/questions/14035180/jquery-load-more-data-on-scroll
+https://stackoverflow.com/questions/5020351/how-to-load-the-web-page-content-based-on-user-scrolling
+
+GU!RU
