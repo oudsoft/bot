@@ -8,3 +8,12 @@ let user = {
 };
 
 console.log(user.fullName); // John Smith
+
+/*
+    clone otop -> blog
+    CKEditor upload picture / browse / select and apply (image link)
+    Create DB
+    
+
+
+*/

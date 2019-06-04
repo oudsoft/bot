@@ -1,0 +1,55 @@
+BLOG
+
+
+UserClass[id, name, descr, lastupd] <admin, blogger,normal>
+User [id, useId, displayname, picprofile, userclassid, lastupd]
+Author [userid, fname, lname, address, tel, birthday, occupie, lastupd]
+
+Articletype [id, name, descr, lastupd] <ppt, policy, economc, social, education>
+Article [id, title, content, authorid, createddt, upddt]
+
+Report[]<บทความไม่เหมาะสม>
+Report[]<Comment ไม่เหมาะสม>
+Report[]<Bug>
+
+Viewlog [id, articleid, userid, lastupd]
+Like [id, articleid, userid, lastupd]
+Comment [id, articleid, content, userid, lastupd]
+AlertMessage[id, from, to, msg, lastupd]
+
+
+กรองคำหยาบ
+http://program-tactic.blogspot.com/2013/07/javascript-regular-expression.html
+jquery-to-load-javascript-file-dynamically
+https://stackoverflow.com/questions/912711/jquery-to-load-javascript-file-dynamically
+
+กรอบ v1.0
+web
+ลงทะเบียนสมาชิก
+สร้างโพสต์
+แก้ไขโพสต์
+กดไลค์
+คอมเมนต์
+รายงานความไม่เหมาะสม
+bot
+เมนู[วิธีใช้งาน/ความเป็นมา/อ่านโพสต์/บริการอื่นๆ/กติกาการอยู่ร่วมกัน]
+สแกนภาพไม่เหมาะสม
+
+step of dev work flow
+1. dev web blog
+	1.1 dbdesign and setup
+	1.2 design web template
+	1.3 createpost
+	1.4 view post
+	1.5 update post
+	
+	1.6 view log activity
+	1.7 like activity
+	1.8 comment activity
+	1.9 report activity
+
+2. post your contenet
+3. dev bot
+4. big test
+5. public
+
