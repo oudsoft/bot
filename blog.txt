@@ -1,0 +1,109 @@
+BLOG
+
+
+UserClass[id, name, descr, lastupd] <admin, blogger,normal>
+User [id, useId, displayname, picprofile, userclassid, lastupd]
+Author [userid, fname, lname, address, tel, birthday, occupie, lastupd]
+
+Articletype [id, name, descr, lastupd] <ppt, policy, economc, social, education>
+Article [id, title, content, authorid, onlinests, createddt, upddt]
+
+ReportType[]<บทความไม่เหมาะสม / Comment ไม่เหมาะสม / system bug>
+Report[id, typeid, content, fromuserid, lastupd]
+
+ViewHit [id, articleid, userid, lastupd]
+Like [id, articleid, userid, lastupd]
+Comment [id, articleid, content, userid, lastupd]
+Reply [id, commentid, reply, userid, lastupd]
+
+AlertMessage[id, from, to, msg, lastupd]
+
+
+กรองคำหยาบ
+http://program-tactic.blogspot.com/2013/07/javascript-regular-expression.html
+jquery-to-load-javascript-file-dynamically
+https://stackoverflow.com/questions/912711/jquery-to-load-javascript-file-dynamically
+
+กรอบ v1.0
+web
+ลงทะเบียนสมาชิก
+สร้างโพสต์
+แก้ไขโพสต์
+กดไลค์
+คอมเมนต์
+รายงานความไม่เหมาะสม
+bot
+เมนู[วิธีใช้งาน/ความเป็นมา/อ่านโพสต์/บริการอื่นๆ/กติกาการอยู่ร่วมกัน]
+สแกนภาพไม่เหมาะสม
+
+step of dev work flow
+1. dev web blog
+	1.1 dbdesign and setup
+	1.2 design web template
+	1.3 createpost
+	1.4 view post
+	1.5 update post
+	
+	1.6 view log activity
+	1.7 like activity
+	1.8 comment activity
+	1.9 report activity
+
+2. post your contenet
+3. dev bot
+4. big test
+5. public
+
+/blog/web
+/blog/bot
+
+https://github.com/dhirajpatra/ckeditor_nodejs_with_img_upload
+
+https://www.myshopman.com/otop/script/ckeditor/samples/img/github-top.png
+
+
+
+grep -rl "string" /path
+
+grep -Hrn 'เปิดหน้าต่างจัดการไฟล์อัพโหลด' node/otop/views/script/ckeditor
+==> browseServer
+grep -Hrn 'browseServer' node/otop/views/script/ckeditor
+
+node/otop/views/script/ckeditor/plugins/image/dialogs/image.js
+
+
+{type:"button",id:"browse",className:"cke_dialog_image_browse",filebrowser:{action:"Browse",target:"Link:txtUrl",url:d.config.filebrowserImageBrowseLinkUrl},style:"float:right",hidden:!0,label:d.lang.common.browseServer}
+
+grep -Hrn 'filebrowserImageBrowseLinkUrl' node/otop/views/script/ckeditor
+
+rep -Hrn 'dialogs/image.js' node/otop/views/script/ckeditor/ckeditor.js
+
+node/otop/views/script/ckeditor
+CKEDITOR.plugins.add("image",{requires:"dialog",init:function(b){if(!b.plugins.detectConflict("image",["easyimage","image2"])){CKEDITOR.dialog.add("image",this.path+"dialogs/image.js");var a="img[alt,!src]{border-style,border-width,float,height,margin,margin-bottom,margin-left,margin-right,margin-top,width}
+
+
+dialog modal
+https://jquerymodal.com/
+
+ckeditor/plugins/imageuploader/imgbrowser.php  --> imgbrowser.js
+[DIALOG]
+1. additional upload
+2. show Preview of List All myImage in my Folder
+
+
+
+https://medium.com/linedevth/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%9E%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%97%E0%B8%B8%E0%B8%81%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B2%E0%B8%A3%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%B8%E0%B8%93-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B9%80%E0%B8%95%E0%B8%B7%E0%B8%AD%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99-line-notify-a4f8c41cf633
+
+
+
+
+
+
+
+
+
+
+
+
+
+
