@@ -67,6 +67,7 @@ step of dev work flow
 5. public
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /blog/web
 /blog/bot
 
@@ -121,4 +122,28 @@ https://medium.com/linedevth/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%9E%E0%B8%A5%E0%B8
 
 
 =======
+>>>>>>> botdev
+=======
+
+
+grep -Hrn 'เปิดหน้าต่างจัดการไฟล์อัพโหลด' node/otop/views/script/ckeditor
+
+grep -Hrn 'browseServer' node/otop/views/script/ckeditor
+
+grep -Hrn 'ที่อยู่อ้างอิง URL' node/otop/views/script/ckeditor
+
+grep -Hrn 'คุณสมบัติของ รูปภาพ' phama/views/script/ckeditor
+function.php
+image_url
+
+grep -Hrn 'showImage(' phama/views/script/ckeditor
+
+function.js
+function useImage(imgSrc)
+param CKEditorFuncNum
+
+
+ตัวอย่าง เงื่อนไข ข้อกำหนด
+https://apthai.d.orisma.com/th/%E0%B8%97%E0%B8%B2%E0%B8%A7%E0%B8%99%E0%B9%8C%E0%B9%82%E0%B8%AE%E0%B8%A1/pleno/pleno-%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%99%E0%B8%B2-%E0%B8%AD%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%99%E0%B8%B8%E0%B8%8A
+
 >>>>>>> botdev
