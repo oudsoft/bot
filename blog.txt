@@ -1,20 +1,25 @@
 BLOG
 
-
+UserSts <สถานะ ปกติ/โดนแบด์จากการร้องเรียน>
+arttypests <on / off>
+artsts <ร่าง / online>
 UserClass[id, name, descr, lastupd] <admin, blogger,normal>
-User [id, useId, displayname, picprofile, userclassid, lastupd]
+User [id, useId, displayname, picprofile, usersts, userclassid, lastupd]
 Author [userid, fname, lname, address, tel, birthday, occupie, lastupd]
 
-Articletype [id, name, descr, lastupd] <ppt, policy, economc, social, education>
-Article [id, title, content, authorid, createddt, upddt]
+Articletype [id, name, descr, arttypests, lastupd] <ppt, 3 จว ชด, policy, economc, social, education>
+Article [id, title, content, authorid, artsts, createddt, upddt]
 
-Report[]<บทความไม่เหมาะสม>
-Report[]<Comment ไม่เหมาะสม>
-Report[]<Bug>
+ReportType[id, type] <Art, Comment, Reply, Bug>
+Report[id, type, content, lastupd, userid]
 
-Viewlog [id, articleid, userid, lastupd]
-Like [id, articleid, userid, lastupd]
+ViewHit [id, articleid, hitcount, lastupd]
+LikeArticle [id, articleid, ARRAY[userid], lastupd]
 Comment [id, articleid, content, userid, lastupd]
+LikeComment[id, commentid, ARRAY[userid], lastupd]
+Reply [id, commentid, content, userid, lastupd]
+LikeReply[id, replyid, ARRAY[userid], lastupd]
+
 AlertMessage[id, from, to, msg, lastupd]
 
 
@@ -72,6 +77,20 @@ function useImage(imgSrc)
 param CKEditorFuncNum
 
 
+
 ตัวอย่าง เงื่อนไข ข้อกำหนด
-https://apthai.d.orisma.com/th/%E0%B8%97%E0%B8%B2%E0%B8%A7%E0%B8%99%E0%B9%8C%E0%B9%82%E0%B8%AE%E0%B8%A1/pleno/pleno-%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%99%E0%B8%B2-%E0%B8%AD%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%99%E0%B8%B8%E0%B8%8A
+https://apthai.d.orisma.com/th/privacy-policy
+
+http://www.webdeveasy.com/pages-slider-with-javascript-and-css/
+
+jquery custom alert box
+http://jqueryui.com/dialog/#modal-message
+
+usrimgman uid param
+- location /res/img/upload/usr/{uid}/
+- browse image list
+- show browse
+- upload <save with new name = new Date().getTime()
+- delete command <https://www.tutorialkart.com/nodejs/delete-a-file-in-nodejs-using-node-fs/>
+- apply command <use>
 
