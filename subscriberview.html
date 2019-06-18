@@ -1,0 +1,35 @@
+<!-- subscriberview.html -->
+<div class="SubscribeViewHeader ContentCenter" id="ViewHeader">
+	<h2>มุมมองผู้ชม</h2>
+</div>
+<div class="SubscribeViewTitle" id="ArticleViewTitleDiv"></div>
+<div class="SubscribeView" id="ArticleViewDiv">
+
+</div>
+<div class="SubscribeViewFooter" id="ArticleViewFooterDiv"></div>
+
+<div class="SubscribeViewCommand ContentCenter" id="ViewCommandDiv">
+	<input type='button' value=' กลับ ' onclick='doBack()'/>
+</div>
+
+<div class="ArticleComment" id="ArticleCommentDiv">
+	<div style='margin-top: 10px;'>
+		<button id='ToggleCommentManCmd' onclick='doOpenComentList()'>แสดงความเห็น</button>
+	</div>
+	<div id="ArticleCommentListDiv">
+
+	</div>
+	<div id="PostCommentForm">
+		<button onclick="doOpenPostCommentForm()">เขียนความเห็นของฉัน</button>
+		<div id="PostCommentFormDiv">	
+			<label for="Comment">เขียนความเห็นเสร็จแล้วคลิกปุ่ม <b>โพสต์ความเห็น</b> เพื่อแสดงความเห็นของคุณ</label>
+			<textarea id="Comment" rows="4" cols="37" style='border: 3px solid blue;'></textarea>
+			<button id="postReviewCmd" onclick="doPostComment()">โพสต์ความเห็น</button>
+			<input type="hidden" id="AID"/>
+			<input type="hidden" id="UID"/>
+			<div class="ContentCenter" style="padding: 5px;">
+				<input type='button' value=' กลับ ' onclick='doBack()'/>
+			</div>
+		</div>
+	</div>
+</div>
