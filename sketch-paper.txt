@@ -1,0 +1,8 @@
+
+amount-score
+hits.l
+	count(aid) from comm
+		count(cid) from repl
+
+freshy-score
+
