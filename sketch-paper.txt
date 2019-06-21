@@ -1,0 +1,32 @@
+
+amount-score
+hits.l
+	count(aid) from comm
+		count(cid) from repl
+
+freshy-score
+
+article series flow plan
+	ptt+3 red provinces
+		1.้history
+		2.primary article
+		3.startegy and steping plan <ข้อจำกัด ข้อดี ข้อเสีย โครงสร้างระบบความปลอดภัย<bot อยู่หน้าสุด ด้านนเป็นบล็อก/ชุมชน>
+		4.vote new community name	<ข้อตกลงองชุมชน ห้ามทำผิดกฎหมาย หรือหมิ่นแหม่ท่จะผิด กม.>
+		5.update ข่าวสถานการณ์ในพื้นที่
+		6.ppt info. and ความไม่ชอบมาพากล (ใหม่ เมืองเอก)
+		7.why the Democry lose in last election
+		8.
+	it<bot>
+		1.What is chat bot
+		2.Mr.QR case study
+		3.Online Sale Bot <OTOP Bot case studdy>
+		4.Food Bot case studdy
+		6.
+
+e-book 
+epub
+meta
+
+
+
+https://nodered.org/docs/creating-nodes/
